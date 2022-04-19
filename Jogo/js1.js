@@ -5,9 +5,8 @@ let ctx = canvas.getContext("2d");
 
 //#############################################################################################################
 //#############################################################################################################
-
-
 //Adicionando evento para pegar os valores das teclas pressionadas;
+
 
 document.addEventListener('keydown',pressionar);
 document.addEventListener('keyup',soltar); /*Ao add um evento, precisa-se informar o tipo de evento
@@ -29,9 +28,8 @@ function soltar(e){
 
 //#############################################################################################################
 //#############################################################################################################
-
-
 //Função para movimentar o jogador 1 (w,a,s,d):
+
 
 //Aqui adicionei a imagem do arroz;
 let arroz = new Image(); arroz.src= 'arroz.png'; let arroz_speed=5; let x_arroz = 300; let y_arroz=300;
@@ -62,9 +60,9 @@ function j1_move(){
 //#############################################################################################################
 //-------------------------------------------------------------------------------------------------------------
 //#############################################################################################################
-
-
 //Função principal:
+
+
 function main(){
 	requestAnimationFrame(main); //Para pedir que o site chame novamente essa função toda vez que atualizar
 	ctx.beginPath(); ctx.clearRect(0, 0, canvas.width, canvas.height);//Limpa o canvas para a proxima animação

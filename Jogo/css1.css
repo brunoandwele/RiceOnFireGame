@@ -1,3 +1,18 @@
 body {
-    background-color: Color;
+    background-color: blue;
+}
+canvas{
+    background-color: white;
+    border-radius: 1rem ;
+    }
+  
+.Borda_Canvas{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}    
+#my_Img{
+
+    position: absolute;
 }

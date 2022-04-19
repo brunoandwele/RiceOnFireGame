@@ -1,18 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
+
 body {
     background-color: rgb(63, 153, 238);
 }
 canvas{
     background-color: white;
-    border-radius: 1rem ;
+    border-radius: 2rem ;
     }
   
-.Borda_Canvas{
+#Borda_Canvas{
     
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-}    
+    
+}   
+
+#Borda_Canvas2{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+} 
+
+
 #my_Img{
 
+    height: 550px;
+    width: 680px;
     position: absolute;
+}
+
+#botao{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#jogar{
+    height: 40px;
+    width: 40vh;
+    border-radius: 2rem;
+    border: white solid 0.2rem;
+    text-align:center ;
+    font-size: 20px;
+    font-family: Poppins;
+}
+
+#jogar:hover{
+    background-color: black;
+    border: white;
+    color: white;
+    transition: all 0.8s ease;
 }

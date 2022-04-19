@@ -1,0 +1,8 @@
+body {
+    background-color: rgba(85, 161, 234, 0.82);
+}
+
+.div1{
+    display: flex; flex-flow: column nowrap;
+    justify-content: center; align-items: center;
+}

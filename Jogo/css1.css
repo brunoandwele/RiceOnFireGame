@@ -3,6 +3,12 @@
 body {
     background-color: rgb(63, 153, 238);
 }
+
+.titulo{
+    font-family: Poppins; color: white; font-size: 30pt;
+
+    text-align: center;
+}
 canvas{
     background-color: white;
     border-radius: 2rem ;

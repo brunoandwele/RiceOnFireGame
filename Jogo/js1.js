@@ -32,7 +32,7 @@ function soltar(e){
 
 
 //Aqui adicionei a imagem do arroz;
-let arroz = new Image(); arroz.src= 'arroz.png'; let arroz_speed=5; let x_arroz = 300; let y_arroz=300;
+let arroz = new Image(); arroz.src= 'arrozin.png'; let arroz_speed=5; let x_arroz = 300; let y_arroz=300;
 
 function j1_move(){
 		/*Condições para ver se uma tecla está sendo pressionada (ele verifica se a tecla está dentro do vetor
@@ -68,5 +68,6 @@ function main(){
 	ctx.beginPath(); ctx.clearRect(0, 0, canvas.width, canvas.height);//Limpa o canvas para a proxima animação
 	j1_move(); //chamando a função do jogador1 (arroz)
 }
+
 main(); //Chamando a função principal.
 

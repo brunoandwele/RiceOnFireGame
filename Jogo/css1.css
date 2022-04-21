@@ -20,10 +20,10 @@ body {
 
 #menu{
     display: flex;
-    margin-top: 20px;
-    flex-direction: inline;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-around;background-color: rgb(49, 49, 49);
+    margin-bottom: 10vh;
 
 
 
@@ -31,15 +31,15 @@ body {
 
 #menu a{
     text-decoration: none;
-    font-size: 30px;
+    font-size: 20px;
     color: white ;
-    padding: 20px;
+    padding: 40px;
 
 }
 
 #menu a:hover{
     text-decoration: none;
-    font-size: 30px;
+    font-size: 20px;
     color: white ;
     background-color: rgb(49, 49, 49);
     padding: 20px;
@@ -96,7 +96,7 @@ canvas{
 }
 
 #jogar:hover{
-    background-color: black;
+    background-color: rgb(49, 49, 49);
     border: white;
     color: white;
     transition: all 0.8s ease;

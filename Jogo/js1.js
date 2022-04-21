@@ -18,7 +18,6 @@ let keys = []; /*para salvar que um tecla foi precionada, é necessário criar u
 //pressinar(e) e soltar(e) são as funções que serão chamadas após os eventos "keydown" e "keyup" forem chamados;
 function pressionar(e) {
 	keys[e.key] = true; //Achei muito estranho, mas é assim que funfa - o que está escrito siginifca que ele irá acrescentar a tecla que pegou à lista
-	console.log(keys)
 }
 
 function soltar(e){

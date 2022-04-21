@@ -9,7 +9,7 @@
 
 body {
     /*background-color: rgb(63, 153, 238);*/
-    background-image: linear-gradient(to bottom right, orange, red);
+    background-image: linear-gradient(to bottom right, gray, red);
     font-family: 'Press Start 2P', cursive;
     
 }

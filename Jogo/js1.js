@@ -48,9 +48,33 @@ function j1_move(){
 	if ( 'a' in keys ){
 		x_arroz -= arroz_speed;
 	}
+	
+	/*Delimitação de espaço do personagem dentro do canvas - 4 delimitações para 4 lados*/
+	/* Utiliza-se como referencial a largura e comprimento do Canvas, a partir disso o eixo x ou y assumirá seu valor decrementado*/
+	/*Lateral direita*/
+	if (x_arroz > (canvas.width - 80)){
+         x_arroz = canvas.width - 80;
+    }
+
+	/*Lateral esquerda*/
+	if (x_arroz < (canvas.width - 650)){
+		x_arroz = canvas.width - 650;
+	}
+
+	/*Inferior*/
+	if (y_arroz > (canvas.height - 80)){
+		y_arroz = canvas.height - 80;
+   	}
+   
+	/*Superior*/
+   	if (y_arroz < (canvas.height - 520)){
+		y_arroz = canvas.height - 520;
+	}
 
 	ctx.beginPath(); //Para indicar o começo
 	ctx.drawImage(arroz, x_arroz, y_arroz, 80, 80); //Para desenhar o arroz de acordo com suas novas posições
+
+	
 }
 
 
@@ -66,6 +90,7 @@ function main(){
 	requestAnimationFrame(main); //Para pedir que o site chame novamente essa função toda vez que atualizar
 	ctx.beginPath(); ctx.clearRect(0, 0, canvas.width, canvas.height);//Limpa o canvas para a proxima animação
 	j1_move(); //chamando a função do jogador1 (arroz)
+	
 }
 
 main(); //Chamando a função principal.

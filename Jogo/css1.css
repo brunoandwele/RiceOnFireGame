@@ -69,7 +69,7 @@ canvas{
 }   
 
 #Borda_Canvas2{
-    margin-top: 10px;
+    margin-top: 13px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,7 +80,7 @@ canvas{
 #my_Img{
 
     height: 550px;
-    width: 680px;
+    width: 690px;
     position: absolute;
 }
 

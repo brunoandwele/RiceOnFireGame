@@ -24,6 +24,24 @@ function soltar(e){
 	delete keys[e.key]; //Após soltar a tecla ele apaga ela da lista
 }
 
+//#############################################################################################################
+//-------------------------------------------------------------------------------------------------------------
+//#############################################################################################################
+//-------------------------------------------------------------------------------------------------------------
+//#############################################################################################################
+// Função resposanvel por contabilizar o número de vidas:
+let num_vidas = 5
+function vidas(){
+	if (num_vidas !=0)
+	{
+		x_arroz = 300;//retorna o bolinho de arroz para a posição inicial
+		y_arroz=300;//retorna o bolinho de arroz para a posição inicial
+	}
+	else
+	{
+		alert("Game over");//fim de jogo 
+	}
+}
 
 //#############################################################################################################
 //#############################################################################################################
@@ -53,29 +71,46 @@ function j1_move(){
 	/* Utiliza-se como referencial a largura e comprimento do Canvas, a partir disso o eixo x ou y assumirá seu valor decrementado*/
 	/*Lateral direita*/
 	if (x_arroz > (canvas.width - 80)){
-         x_arroz = canvas.width - 80;
+        //x_arroz = canvas.width - 80;
+		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
+		vidas()
+		console.log(num_vidas);
+		
     }
 
 	/*Lateral esquerda*/
 	if (x_arroz < (canvas.width - 650)){
-		x_arroz = canvas.width - 650;
+		//x_arroz = canvas.width - 650;
+		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
+		vidas()
+		console.log(num_vidas);
+		
 	}
 
 	/*Inferior*/
 	if (y_arroz > (canvas.height - 80)){
-		y_arroz = canvas.height - 80;
+		//y_arroz = canvas.height - 80;
+		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
+		vidas()
+		console.log(num_vidas);
+		
    	}
    
 	/*Superior*/
    	if (y_arroz < (canvas.height - 520)){
-		y_arroz = canvas.height - 520;
+		//y_arroz = canvas.height - 520;
+		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
+		vidas()
+		console.log(num_vidas);
 	}
+
+	
 
 	ctx.beginPath(); //Para indicar o começo
 	ctx.drawImage(arroz, x_arroz, y_arroz, 80, 80); //Para desenhar o arroz de acordo com suas novas posições
-
 	
 }
+
 
 
 //#############################################################################################################

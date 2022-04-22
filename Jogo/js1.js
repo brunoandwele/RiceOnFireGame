@@ -32,14 +32,15 @@ function soltar(e){
 // Função resposanvel por contabilizar o número de vidas:
 let num_vidas = 5
 function vidas(){
-	if (num_vidas !=0)
+	if (num_vidas != 0)
 	{
 		x_arroz = 300;//retorna o bolinho de arroz para a posição inicial
 		y_arroz=300;//retorna o bolinho de arroz para a posição inicial
 	}
 	else
 	{
-		alert("Game over");//fim de jogo 
+		location.reload(); //Para dar reload na página após perder o jogo;
+		alert("Game over");//fim de jogo
 	}
 }
 
@@ -75,7 +76,6 @@ function j1_move(){
 		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
 		vidas()
 		console.log(num_vidas);
-		
     }
 
 	/*Lateral esquerda*/

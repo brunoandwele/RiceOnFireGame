@@ -50,7 +50,7 @@ function vidas(){
 
 
 //Aqui adicionei a imagem do arroz;
-let arroz = new Image(); arroz.src= 'arrozin.png'; let arroz_speed=5; let x_arroz = 300; let y_arroz=300;
+let arroz = new Image(); arroz.src= 'arrozin.png'; let arroz_speed=8; let x_arroz = 300; let y_arroz=300;
 
 function j1_move(){
 		/*Condições para ver se uma tecla está sendo pressionada (ele verifica se a tecla está dentro do vetor
@@ -111,6 +111,43 @@ function j1_move(){
 	
 }
 
+//#############################################################################################################
+//#############################################################################################################
+//Comidinhas do arroizin
+
+//Função para gerar um valor aleatório para depois associar ao x e y;
+function getRandomInt(max) {
+	return Math.floor(Math.random() * max);
+}
+
+//São os elementos da comida! - valores x e y iniciais e fonte da imagem
+let x_comida = getRandomInt(canvas.width-50); let y_comida = getRandomInt(canvas.height-45); //Coloquei como limite 40 pixels a menos da borda(Além do tamanho da foto, para ficar dentro do canvas)
+let comida = new Image(); comida.src = "comidinha.jpeg";
+
+let pontos = 0; //Cria a variável pontos, para que seja feita a contagem
+
+function comidinha(){
+	
+	//Verificar a colisão - foi definido como se o arroz fosse apenas um ponto na tela
+	//Ele verifica se o "ponto" arroz entra na área do arroizin
+	//Para isso o "x" e o "y" da comida precisa estar dentro desses requisitos:
+	if ( (x_comida >= x_arroz) && (x_comida <= (x_arroz+80)) 
+	&& (y_comida >= y_arroz) && (y_comida <= (y_arroz + 80))){
+		
+		pontos += 1; //A pontuação aumenta em 1 ponto!
+		
+		x_comida = getRandomInt(canvas.width-40); //É definido um novo "x"
+		y_comida = getRandomInt(canvas.height-35); //É definido um novo "y"
+	}
+	
+	
+	ctx.beginPath(); //Inicio do desenho
+	ctx.drawImage(comida, x_comida, y_comida, 30,25); //Desenha a comida
+}
+
+
+
+
 
 
 //#############################################################################################################
@@ -124,8 +161,8 @@ function j1_move(){
 function main(){
 	requestAnimationFrame(main); //Para pedir que o site chame novamente essa função toda vez que atualizar
 	ctx.beginPath(); ctx.clearRect(0, 0, canvas.width, canvas.height);//Limpa o canvas para a proxima animação
+	comidinha(); //Chama a função de desenhar a comida
 	j1_move(); //chamando a função do jogador1 (arroz)
-	
 }
 
 main(); //Chamando a função principal.

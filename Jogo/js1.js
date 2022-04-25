@@ -147,9 +147,9 @@ function comidinha(){
 	//Ele verifica se os "pontos" da comida entraram na área do arroizin
 	//Para isso o "x" e o "y" da comida precisa estar dentro desses requisitos:
 	if ( ((x_comida >= x_arroz) || (x_comida+30 >= x_arroz) ) &&
-		((x_comida <= x_arroz + 80) || (x_comida+30 <= x_arroz + 80)) && 
-		((y_comida >= y_arroz) || (y_comida+25 >= y_arroz))&&
-		((y_comida <= y_arroz + 80) || (y_comida+25 <= y_arroz+80)) ){
+		((x_comida <= x_arroz) || (x_comida+30 <= x_arroz + 80)) &&
+		((y_comida >= y_arroz) || (y_comida+25 >= y_arroz)) &&
+		((y_comida <= y_arroz) || (y_comida+25 <= y_arroz+80)) ){
 		
 		pontos += 1; //A pontuação aumenta em 1 ponto!
 		
@@ -161,10 +161,48 @@ function comidinha(){
 	
 	
 	ctx.beginPath(); //Inicio do desenho
-	ctx.drawImage(comida, x_comida-15, y_comida-12.5, 30,25); //Desenha a comida
+	ctx.drawImage(comida, x_comida, y_comida, 30,25); //Desenha a comida
 	
 	
 }
+
+//#############################################################################################################
+//#############################################################################################################
+//Comidinha especial!
+
+let c_especial = new Image(); c_especial.src = 'c_especial.jpeg'; 
+let contador_especial = 0; 
+let x_cEspecial = getRandomInt(canvas.width-60) + 30; let y_cEspecial = getRandomInt(canvas.height-50) + 25;
+
+
+function cespecial(){
+	let atualizador = getRandomInt(20);
+	
+	if (atualizador === 1 && contador_especial<30) {
+		contador_especial += 1;
+	}
+	
+	if (contador_especial===30){
+		ctx.beginPath();
+		ctx.drawImage(c_especial , x_cEspecial , y_cEspecial , 30,25);
+		
+		if ( ((x_cEspecial >= x_arroz) || (x_cEspecial+45 >= x_arroz) ) &&
+			((x_cEspecial <= x_arroz) || (x_cEspecial+30 <= x_arroz + 80)) &&
+			((y_cEspecial >= y_arroz) || (y_comida+25 >= y_arroz))&&
+			((y_cEspecial <= y_arroz) || (y_cEspecial+25 <= y_arroz+80)) ){
+			
+			contador_especial=0;
+			
+			pontos += 5;
+			pontuacao.innerText = pontos //Atualiza no HTML a pontuação!
+			
+			x_cEspecial = getRandomInt(canvas.width);
+			y_cEspecial = getRandomInt(canvas.height);
+		};
+	};
+	
+	
+};
 
 
 
@@ -183,7 +221,9 @@ function main(){
 	requestAnimationFrame(main); //Para pedir que o site chame novamente essa função toda vez que atualizar
 	ctx.beginPath(); ctx.clearRect(0, 0, canvas.width, canvas.height);//Limpa o canvas para a proxima animação
 	comidinha(); //Chama a função de desenhar a comida
+	cespecial();
 	j1_move(); //chamando a função do jogador1 (arroz)
+	
 }
 
 main(); //Chamando a função principal.

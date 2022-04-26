@@ -76,7 +76,7 @@ function j1_move(){
 	/*Delimitação de espaço do personagem dentro do canvas - 4 delimitações para 4 lados*/
 	/* Utiliza-se como referencial a largura e comprimento do Canvas, a partir disso o eixo x ou y assumirá seu valor decrementado*/
 	/*Lateral direita*/
-	if (x_arroz - 40>= (canvas.width-80)){
+	if (x_arroz - 40 >= (canvas.width-80)){
         //x_arroz = canvas.width - 80;
 		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
 		vidas()
@@ -186,10 +186,10 @@ function cespecial(){
 		ctx.beginPath();
 		ctx.drawImage(c_especial , x_cEspecial , y_cEspecial , 30,25);
 		
-		if ((x_cEspecial >= x_arroz) &&
-			(x_cEspecial <= x_arroz+80) &&
-			(y_cEspecial >= y_arroz) &&
-			(y_cEspecial <= y_arroz+80) ){
+		if ((x_cEspecial >= x_arroz-40) &&
+			(x_cEspecial <= x_arroz+40) &&
+			(y_cEspecial >= y_arroz-40) &&
+			(y_cEspecial <= y_arroz+40) ){
 			
 			contador_especial=0;
 			

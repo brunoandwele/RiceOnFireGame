@@ -149,7 +149,7 @@ function comidinha(){
 	if ((x_comida+15 >= x_arroz-40) &&
 		(x_comida+15 <= x_arroz+40) &&
 		(y_comida+12.5 >= y_arroz-40) &&
-		(y_comida+12.5 <= y_arroz+80)){
+		(y_comida+12.5 <= y_arroz+40)){
 		
 		pontos += 1; //A pontuação aumenta em 1 ponto!
 		

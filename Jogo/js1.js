@@ -76,7 +76,7 @@ function j1_move(){
 	/*Delimitação de espaço do personagem dentro do canvas - 4 delimitações para 4 lados*/
 	/* Utiliza-se como referencial a largura e comprimento do Canvas, a partir disso o eixo x ou y assumirá seu valor decrementado*/
 	/*Lateral direita*/
-	if (x_arroz-40 >= (canvas.width - 80)){
+	if (x_arroz - 40>= (canvas.width-80)){
         //x_arroz = canvas.width - 80;
 		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
 		vidas()
@@ -85,7 +85,7 @@ function j1_move(){
     }
 
 	/*Lateral esquerda*/
-	if (x_arroz <= (40)){
+	if (x_arroz - 40 <= (0)){
 		//x_arroz = 40;
 		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
 		vidas()
@@ -95,7 +95,7 @@ function j1_move(){
 	}
 
 	/*Inferior*/
-	if (y_arroz-40 >= (canvas.height - 80)){
+	if (y_arroz-40 >= (canvas.height-80)){
 		//y_arroz = canvas.height - 80;
 		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
 		vidas()
@@ -105,7 +105,7 @@ function j1_move(){
    	}
    
 	/*Superior*/
-   	if (y_arroz <= (40)){
+   	if (y_arroz-40 <= (0)){
 		//y_arroz = 40;
 		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
 		vidas()
@@ -116,7 +116,7 @@ function j1_move(){
 	
 
 	ctx.beginPath(); //Para indicar o começo
-	ctx.drawImage(arroz, x_arroz, y_arroz, 80, 80); //Para desenhar o arroz de acordo com suas novas posições
+	ctx.drawImage(arroz, x_arroz-40, y_arroz-40, 80, 80); //Para desenhar o arroz de acordo com suas novas posições
 	
 }
 
@@ -136,9 +136,9 @@ let comida = new Image(); comida.src = "comidinha.jpeg";
 
 //Criando variáveis para que seja possível adicionar as informações de pontuação no html
 let pontuacao = document.getElementById('pontos'); //Cria a variável como o texto da tag de id pontos
-let pontos = 0; //Cria a variável pontos, para que seja feita a contagem
+let pontos = 0  //Cria a variável pontos, para que seja feita a contagem
 
-pontuacao.innerText = pontos //Adiciona pela primeira vez no html o valor da pontuação, o qual começa no 0!
+pontuacao.innerText = pontos; //Adiciona pela primeira vez no html o valor da pontuação, o qual começa no 0!
 
 
 function comidinha(){
@@ -146,10 +146,10 @@ function comidinha(){
 	//Verificar a colisão - foram definidos 4 pontos da comida, pontos esses que são os cantos do quadrado que forma a imagem;
 	//Ele verifica se os "pontos" da comida entraram na área do arroizin
 	//Para isso o "x" e o "y" da comida precisa estar dentro desses requisitos:
-	if ( (x_comida >= x_arroz)  &&
-		(x_comida <= x_arroz+80)  &&
-		(y_comida >= y_arroz) &&
-		(y_comida <= y_arroz+80) ){
+	if ((x_comida+15 >= x_arroz-40) &&
+		(x_comida+15 <= x_arroz+40) &&
+		(y_comida+12.5 >= y_arroz-40) &&
+		(y_comida+12.5 <= y_arroz+80)){
 		
 		pontos += 1; //A pontuação aumenta em 1 ponto!
 		
@@ -186,7 +186,7 @@ function cespecial(){
 		ctx.beginPath();
 		ctx.drawImage(c_especial , x_cEspecial , y_cEspecial , 30,25);
 		
-		if ( (x_cEspecial >= x_arroz) &&
+		if ((x_cEspecial >= x_arroz) &&
 			(x_cEspecial <= x_arroz+80) &&
 			(y_cEspecial >= y_arroz) &&
 			(y_cEspecial <= y_arroz+80) ){
@@ -223,7 +223,6 @@ function main(){
 	comidinha(); //Chama a função de desenhar a comida
 	cespecial();
 	j1_move(); //chamando a função do jogador1 (arroz)
-	
 }
 
 main(); //Chamando a função principal.

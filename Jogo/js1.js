@@ -116,7 +116,7 @@ function j1_move(){
 	
 
 	ctx.beginPath(); //Para indicar o começo
-	ctx.drawImage(arroz, x_arroz-40, y_arroz-40, 80, 80); //Para desenhar o arroz de acordo com suas novas posições
+	ctx.drawImage(arroz, x_arroz, y_arroz, 80, 80); //Para desenhar o arroz de acordo com suas novas posições
 	
 }
 
@@ -146,10 +146,10 @@ function comidinha(){
 	//Verificar a colisão - foram definidos 4 pontos da comida, pontos esses que são os cantos do quadrado que forma a imagem;
 	//Ele verifica se os "pontos" da comida entraram na área do arroizin
 	//Para isso o "x" e o "y" da comida precisa estar dentro desses requisitos:
-	if ( ((x_comida >= x_arroz) || (x_comida+30 >= x_arroz) ) &&
-		((x_comida <= x_arroz) || (x_comida+30 <= x_arroz + 80)) &&
-		((y_comida >= y_arroz) || (y_comida+25 >= y_arroz)) &&
-		((y_comida <= y_arroz) || (y_comida+25 <= y_arroz+80)) ){
+	if ( (x_comida >= x_arroz)  &&
+		(x_comida <= x_arroz+80)  &&
+		(y_comida >= y_arroz) &&
+		(y_comida <= y_arroz+80) ){
 		
 		pontos += 1; //A pontuação aumenta em 1 ponto!
 		
@@ -186,10 +186,10 @@ function cespecial(){
 		ctx.beginPath();
 		ctx.drawImage(c_especial , x_cEspecial , y_cEspecial , 30,25);
 		
-		if ( ((x_cEspecial >= x_arroz) || (x_cEspecial+45 >= x_arroz) ) &&
-			((x_cEspecial <= x_arroz) || (x_cEspecial+30 <= x_arroz + 80)) &&
-			((y_cEspecial >= y_arroz) || (y_comida+25 >= y_arroz))&&
-			((y_cEspecial <= y_arroz) || (y_cEspecial+25 <= y_arroz+80)) ){
+		if ( (x_cEspecial >= x_arroz) &&
+			(x_cEspecial <= x_arroz+80) &&
+			(y_cEspecial >= y_arroz) &&
+			(y_cEspecial <= y_arroz+80) ){
 			
 			contador_especial=0;
 			

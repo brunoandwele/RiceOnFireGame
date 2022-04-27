@@ -211,21 +211,62 @@ function cespecial(){
 //#########################################################
 //#########################################################
 //Fogos:
+function getRandomInt(max) {
+	return Math.floor(Math.random(4) * max);
+}
 let fogo = new Image(); 
 fogo.src= 'fogo_pixilizado.png'; 
 let fogo_speed=4; 
-let x_fogo = 0; 
-let y_fogo=  0;
+
 
 let completar = 0;
 function foguinho(){
+	// Canto superior esquerdo
+	/*if (completar === 0){
+		let x_fogo = 0; 
+		let y_fogo=  0;
+		x_fogo += (650/525)*fogo_speed;
+		y_fogo += fogo_speed;
+		ctx.beginPath(); //Para indicar o começo
+		ctx.drawImage(fogo, x_fogo, y_fogo, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+	}*/
+
+	// Canto inferior esquerdo
+	/*
 	if (completar === 0){
+
+		var x_fogo = 0; 
+		var y_fogo=  435;
+
+		x_fogo += (650/525)*fogo_speed;
+		y_fogo += fogo_speed;
+		ctx.beginPath(); //Para indicar o começo
+		ctx.drawImage(fogo, x_fogo, y_fogo, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+	}*/
+
+	//Canto superir direito
+	/*
+	if (completar === 0){
+		let x_fogo = 560; 
+		let y_fogo=  0;
 		x_fogo += (650/525)*fogo_speed;
 		y_fogo += fogo_speed;
 		ctx.beginPath(); //Para indicar o começo
 		ctx.drawImage(fogo, x_fogo, y_fogo, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
 	}
+	*/
 	
+	//Canto superir inferior
+	/*
+	if (completar === 0){
+		let x_fogo = 560; 
+		let y_fogo=  435;
+		x_fogo += (650/525)*fogo_speed;
+		y_fogo -= fogo_speed;
+		ctx.beginPath(); //Para indicar o começo
+		ctx.drawImage(fogo, x_fogo, y_fogo, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+	}
+	*/
 	
 	
 }

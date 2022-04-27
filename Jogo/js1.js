@@ -159,8 +159,8 @@ function comidinha(){
 		
 		pontuacao.innerText = pontos //Atualiza no HTML a pontuação!
 		
-		x_comida = getRandomInt(canvas.width-60) + 30; //É definido um novo "x"
-		y_comida = getRandomInt(canvas.height-50) + 25; //É definido um novo "y"
+		x_comida = getRandomInt(canvas.width-90) + 30; //É definido um novo "x"
+		y_comida = getRandomInt(canvas.height-75) + 25; //É definido um novo "y"
 	}
 	
 	
@@ -176,7 +176,7 @@ function comidinha(){
 
 let c_especial = new Image(); c_especial.src = 'c_especial.jpeg'; 
 let contador_especial = 0; 
-let x_cEspecial = getRandomInt(canvas.width-60) + 30; let y_cEspecial = getRandomInt(canvas.height-50) + 25;
+let x_cEspecial = getRandomInt(canvas.width-90) + 30; let y_cEspecial = getRandomInt(canvas.height-75) + 25;
 
 
 function cespecial(){
@@ -200,8 +200,8 @@ function cespecial(){
 			pontos += 5;
 			pontuacao.innerText = pontos //Atualiza no HTML a pontuação!
 			
-			x_cEspecial = getRandomInt(canvas.width);
-			y_cEspecial = getRandomInt(canvas.height);
+			x_cEspecial = getRandomInt(canvas.width-90) +30;
+			y_cEspecial = getRandomInt(canvas.height-75) +25;
 		}
 	}
 	
@@ -211,15 +211,21 @@ function cespecial(){
 //#########################################################
 //#########################################################
 //Fogos:
-let fogo = new Image(); fogo.src= 'fogo_pixilizado.png'; let fogo_speed=8; let x_fogo = (canvas.width/2); let y_fogo=(canvas.height/2);
+let fogo = new Image(); 
+fogo.src= 'fogo_pixilizado.png'; 
+let fogo_speed=4; 
+let x_fogo = 0; 
+let y_fogo=  0;
 
+let completar = 0;
 function foguinho(){
-	if (fogo.x < (canvas.width - 90)){
-        fogo.x +=1// incrimenta o eixo x
-		fogo.y +=1
-    }
-	ctx.beginPath(); //Para indicar o começo
-	ctx.drawImage(fogo, 0, 0, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+	if (completar === 0){
+		x_fogo += (650/525)*fogo_speed;
+		y_fogo += fogo_speed;
+		ctx.beginPath(); //Para indicar o começo
+		ctx.drawImage(fogo, x_fogo, y_fogo, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+	}
+	
 	
 	
 }
@@ -236,12 +242,12 @@ let boss_d = {
 	w:50,
 	x:(canvas.width/2),
 	y:80,
-	speed: 3
+	speed: 1
 }
 
 //Ele perseguirá o arroizin, então é necessário fazer um sistema de chasing comparando os x e y
 function boss_move(pontos){
-	if (pontos>=0) {
+	if (pontos>50) {
 		//Condições para caçar o arroz
 		if ( arroz_d.x > boss_d.x ) {
 			boss_d.x += boss_d.speed;
@@ -261,15 +267,36 @@ function boss_move(pontos){
 	}
 	
 	//Colisao
-	/*
+	
 	if (
-		
+		//X0,Y0
+		(boss_d.x - boss_d.w / 2 >= arroz_d.x-40) &&
+		(boss_d.x - boss_d.w / 2 <= arroz_d.x+40) &&
+		(boss_d.y - boss_d.h / 2 >= arroz_d.y-40) &&
+		(boss_d.y - boss_d.h / 2 <= arroz_d.y+40) ||
+		//Xm,Y0
+		(boss_d.x + boss_d.w / 2 >= arroz_d.x-40) &&
+		(boss_d.x + boss_d.w / 2 <= arroz_d.x+40) &&
+		(boss_d.y - boss_d.h / 2 >= arroz_d.y-40) &&
+		(boss_d.y - boss_d.h / 2 <= arroz_d.y+40) ||
+		//X0,Ym
+		(boss_d.x - boss_d.w / 2 >= arroz_d.x-40) &&
+		(boss_d.x - boss_d.w / 2 <= arroz_d.x+40) &&
+		(boss_d.y + boss_d.h / 2 >= arroz_d.y-40) &&
+		(boss_d.y + boss_d.h / 2 <= arroz_d.y+40) ||
+		//Xm,Ym
+		(boss_d.x + boss_d.w / 2 >= arroz_d.x-40) &&
+		(boss_d.x + boss_d.w / 2 <= arroz_d.x+40) &&
+		(boss_d.y + boss_d.h / 2 >= arroz_d.y-40) &&
+		(boss_d.y + boss_d.h / 2 <= arroz_d.y+40)
 	){
 		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
+		boss_d.x = canvas.width/2;//retorna o bolinho de arroz para a posição inicial
+		boss_d.y=80;//retorna o bolinho de arroz para a posição inicial
 		vidas()
 		vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
 		console.log(num_vidas);
-	}*/
+	}
 }
 
 

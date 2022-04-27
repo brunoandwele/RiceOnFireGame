@@ -204,6 +204,25 @@ function cespecial(){
 	
 };
 
+//#############################################################################################################
+//-------------------------------------------------------------------------------------------------------------
+//#############################################################################################################
+//-------------------------------------------------------------------------------------------------------------
+//#############################################################################################################
+//Fogos:
+let fogo = new Image(); fogo.src= 'fogo_pixilizado.png'; let fogo_speed=8; let x_fogo = (canvas.width/2); let y_fogo=(canvas.height/2);
+
+function foguinho(){
+	if (fogo.x < (canvas.width - 90)){
+        fogo.x +=1// incrimenta o eixo x
+		fogo.y +=1
+    }
+	ctx.beginPath(); //Para indicar o começo
+	ctx.drawImage(fogo, 0, 0, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+	
+	
+}
+
 
 
 
@@ -223,6 +242,7 @@ function main(){
 	comidinha(); //Chama a função de desenhar a comida
 	cespecial();
 	j1_move(); //chamando a função do jogador1 (arroz)
+	foguinho();
 }
 
 main(); //Chamando a função principal.

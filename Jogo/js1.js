@@ -337,7 +337,7 @@ let boss_d = {
 
 //Ele perseguirá o arroizin, então é necessário fazer um sistema de chasing comparando os x e y
 function boss_move(pontos){
-	if (pontos<=50) {
+	if (pontos>=50) {
 		//Condições para caçar o arroz
 		if ( arroz_d.x > boss_d.x ) {
 			boss_d.x += boss_d.speed;
@@ -350,6 +350,35 @@ function boss_move(pontos){
 		} else {
 			boss_d.y -= boss_d.speed;
 		}
+		if (
+			//X0,Y0
+			(boss_d.x - boss_d.w / 2 >= arroz_d.x-40) &&
+			(boss_d.x - boss_d.w / 2 <= arroz_d.x+40) &&
+			(boss_d.y - boss_d.h / 2 >= arroz_d.y-40) &&
+			(boss_d.y - boss_d.h / 2 <= arroz_d.y+40) ||
+			//Xm,Y0
+			(boss_d.x + boss_d.w / 2 >= arroz_d.x-40) &&
+			(boss_d.x + boss_d.w / 2 <= arroz_d.x+40) &&
+			(boss_d.y - boss_d.h / 2 >= arroz_d.y-40) &&
+			(boss_d.y - boss_d.h / 2 <= arroz_d.y+40) ||
+			//X0,Ym
+			(boss_d.x - boss_d.w / 2 >= arroz_d.x-40) &&
+			(boss_d.x - boss_d.w / 2 <= arroz_d.x+40) &&
+			(boss_d.y + boss_d.h / 2 >= arroz_d.y-40) &&
+			(boss_d.y + boss_d.h / 2 <= arroz_d.y+40) ||
+			//Xm,Ym
+			(boss_d.x + boss_d.w / 2 >= arroz_d.x-40) &&
+			(boss_d.x + boss_d.w / 2 <= arroz_d.x+40) &&
+			(boss_d.y + boss_d.h / 2 >= arroz_d.y-40) &&
+			(boss_d.y + boss_d.h / 2 <= arroz_d.y+40)
+		){
+			num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
+			boss_d.x = canvas.width/2;//retorna o bolinho de arroz para a posição inicial
+			boss_d.y=80;//retorna o bolinho de arroz para a posição inicial
+			vidas()
+			vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
+			console.log(num_vidas);
+		}
 
 		ctx.beginPath();
 		ctx.drawImage(boss, boss_d.x - boss_d.w / 2, boss_d.y - boss_d.h / 2, boss_d.w, boss_d.h); //Desenha o arroz de acordo com seus dados
@@ -358,35 +387,7 @@ function boss_move(pontos){
 
 	//Colisao
 
-	if (
-		//X0,Y0
-		(boss_d.x - boss_d.w / 2 >= arroz_d.x-40) &&
-		(boss_d.x - boss_d.w / 2 <= arroz_d.x+40) &&
-		(boss_d.y - boss_d.h / 2 >= arroz_d.y-40) &&
-		(boss_d.y - boss_d.h / 2 <= arroz_d.y+40) ||
-		//Xm,Y0
-		(boss_d.x + boss_d.w / 2 >= arroz_d.x-40) &&
-		(boss_d.x + boss_d.w / 2 <= arroz_d.x+40) &&
-		(boss_d.y - boss_d.h / 2 >= arroz_d.y-40) &&
-		(boss_d.y - boss_d.h / 2 <= arroz_d.y+40) ||
-		//X0,Ym
-		(boss_d.x - boss_d.w / 2 >= arroz_d.x-40) &&
-		(boss_d.x - boss_d.w / 2 <= arroz_d.x+40) &&
-		(boss_d.y + boss_d.h / 2 >= arroz_d.y-40) &&
-		(boss_d.y + boss_d.h / 2 <= arroz_d.y+40) ||
-		//Xm,Ym
-		(boss_d.x + boss_d.w / 2 >= arroz_d.x-40) &&
-		(boss_d.x + boss_d.w / 2 <= arroz_d.x+40) &&
-		(boss_d.y + boss_d.h / 2 >= arroz_d.y-40) &&
-		(boss_d.y + boss_d.h / 2 <= arroz_d.y+40)
-	){
-		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
-		boss_d.x = canvas.width/2;//retorna o bolinho de arroz para a posição inicial
-		boss_d.y=80;//retorna o bolinho de arroz para a posição inicial
-		vidas()
-		vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
-		console.log(num_vidas);
-	}
+	
 }
 
 

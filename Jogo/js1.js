@@ -211,7 +211,7 @@ function cespecial(){
 //#########################################################
 //#########################################################
 //Fogos:
-let sorteio_posicoes = getRandomInt(5);
+let sorteio_posicoes = getRandomInt(4);
 let fogo = new Image();
 fogo.src= 'fogo_pixilizado.png';
 let fogo_speed=4;
@@ -237,86 +237,86 @@ function foguinho(){
     //Funções de movimentação do Fogo
     // Canto superior esquerdo
     function cse(){
-        x_fogo_cse += (650/525)*fogo_speed;
-        y_fogo_cse += fogo_speed;
-        ctx.beginPath(); //Para indicar o começo
-        ctx.drawImage(fogo, x_fogo_cse, y_fogo_cse, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+		if (x_fogo_cse < canvas.width && y_fogo_cse < canvas.height) {
+			x_fogo_cse += (650 / 525) * fogo_speed;
+			y_fogo_cse += fogo_speed;
+			ctx.beginPath(); //Para indicar o começo
+			ctx.drawImage(fogo, x_fogo_cse, y_fogo_cse, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+		}
+		else{
+			sorteio_posicoes = getRandomInt(3);
+			console.log(sorteio_posicoes);
+		}
     }
 
     // Canto inferior esquerdo
     function cie(){
-        x_fogo_cie += (650/525)*fogo_speed;
-        y_fogo_cie -= fogo_speed;
-        ctx.beginPath(); //Para indicar o começo
-        ctx.drawImage(fogo, x_fogo_cie, y_fogo_cie, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+		if (x_fogo_cie < canvas.width && y_fogo_cie > 0) {
+			x_fogo_cie += (650 / 525) * fogo_speed;
+			y_fogo_cie -= fogo_speed;
+			ctx.beginPath(); //Para indicar o começo
+			ctx.drawImage(fogo, x_fogo_cie, y_fogo_cie, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+		}
+		else{
+			sorteio_posicoes = getRandomInt(3);
+			console.log(sorteio_posicoes);
+		}
     }
 
     //Canto superir direito
     function csd(){
-        x_fogo_csd  -= (650/525)*fogo_speed;
-        y_fogo_csd  += fogo_speed;
-        ctx.beginPath(); //Para indicar o começo
-        ctx.drawImage(fogo, x_fogo_csd ,y_fogo_csd , 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+		if (x_fogo_csd > 0 && y_fogo_csd < canvas.height){
+			x_fogo_csd  -= (650/525)*fogo_speed;
+			y_fogo_csd  += fogo_speed;
+			ctx.beginPath(); //Para indicar o começo
+			ctx.drawImage(fogo, x_fogo_csd ,y_fogo_csd , 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+		}
+		else{
+			sorteio_posicoes = getRandomInt(3);
+			console.log(sorteio_posicoes);
+		}
+        
     }
-
+	
+	
     //Canto inferior direito
     function cid(){
-        x_fogo_cid -= (650/525)*fogo_speed;
-        y_fogo_cid -= fogo_speed;
-        ctx.beginPath(); //Para indicar o começo
-        ctx.drawImage(fogo, x_fogo_cid, y_fogo_cid, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+		if (x_fogo_cid > 0 && y_fogo_cid > 0) {
+			x_fogo_cid -= (650 / 525) * fogo_speed;
+			y_fogo_cid -= fogo_speed;
+			ctx.beginPath(); //Para indicar o começo
+			ctx.drawImage(fogo, x_fogo_cid, y_fogo_cid, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
+		}
+		else{
+			sorteio_posicoes = getRandomInt(3);
+			console.log(sorteio_posicoes);
+		}
     }
 
     //################################################################################################################
 
-    if (sorteio_posicoes === 1){
-        if (pontos ===10 ){
-            cse();// Ativa o canto superior esquerdo
-            cie();// Ativa o canto inferior esquerdo
-        }
-        else{
-            cse();// Ativa o canto superior esquerdo
-        }
+    if (sorteio_posicoes === 0){
+        cse();// Ativa o canto superior esquerdo
     }
 
     // Canto inferior esquerdo
-    else if (sorteio_posicoes === 2){
-        if (pontos ===15 ){
-            csd();// Ativa o canto superior direito
-            cie();// Ativa o canto inferior esquerdo
-        }
-        else{
-            cie();// Ativa o canto inferior esquerdo
-        }
+    else if (sorteio_posicoes === 1){
+        cie();// Ativa o canto inferior esquerdo
     }
 
     //Canto superir direito
-    else if (sorteio_posicoes === 3){
-        if (pontos === 20 ){
-            csd();// Ativa o canto superior direito
-            cie();// Ativa o canto inferior esquerdo
-            cse();// Ativa o canto superior esquerdo
-        }
-        else{
-            csd();// Ativa o canto superior direito
-        }
-
+    else if (sorteio_posicoes === 2){
+        
+		csd();// Ativa o canto superior direito
     }
 
     //Canto inferior direito
-    else if (sorteio_posicoes === 4){
-        if (pontos ===25 ){
-            csd();// Ativa o canto superior direito
-            cie();// Ativa o canto inferior esquerdo
-            cse();// Ativa o canto superior esquerdo
-            cid();// Ativa o canto superior direito
-        }
-        else{
-            cid();// Ativa o canto superior direto
-        }
-
-    }
-
+    else if (sorteio_posicoes === 3){
+        
+        
+		cid();// Ativa o canto superior direto
+		
+	}
 }
 
 
@@ -324,20 +324,20 @@ function foguinho(){
 //#########################################################
 //Boss
 
-let boss = new Image(); boss.src='boss.png'; //Criando e adicionando a imagem do boss
+let boss = new Image(); boss.src='fogo_pixilizado.png'; //Criando e adicionando a imagem do boss
 
 //São os dados do boss
 let boss_d = {
 	h:80,
 	w:50,
 	x:(canvas.width/2),
-	y:80,
+	y:50,
 	speed: 1
 }
 
 //Ele perseguirá o arroizin, então é necessário fazer um sistema de chasing comparando os x e y
 function boss_move(pontos){
-	if (pontos>=50) {
+	if (pontos>=5) {
 		//Condições para caçar o arroz
 		if ( arroz_d.x > boss_d.x ) {
 			boss_d.x += boss_d.speed;
@@ -350,6 +350,7 @@ function boss_move(pontos){
 		} else {
 			boss_d.y -= boss_d.speed;
 		}
+		
 		if (
 			//X0,Y0
 			(boss_d.x - boss_d.w / 2 >= arroz_d.x-40) &&

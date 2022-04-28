@@ -232,7 +232,7 @@ let x_fogo_cid = 560;
 let y_fogo_cid=  435;
 
 
-//let completar = 0;
+let completar = 0;
 function foguinho(){
 
 	//Funções de movimentação do Fogo

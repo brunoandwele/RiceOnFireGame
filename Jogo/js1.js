@@ -211,10 +211,10 @@ function cespecial(){
 //#########################################################
 //#########################################################
 //Fogos:
-let sorteio_posicoes = getRandomInt(4);
+let sorteio_posicoes = getRandomInt(2);
 let fogo = new Image();
 fogo.src= 'fogo_pixilizado.png';
-let fogo_speed=4;
+let fogo_speed=2;
 //Coordernadas - Canto superior esquerdo:
 let x_fogo_cse = 0;
 let y_fogo_cse =  0;
@@ -237,87 +237,212 @@ function foguinho(){
     //Funções de movimentação do Fogo
     // Canto superior esquerdo
     function cse(){
-		if (x_fogo_cse < canvas.width && y_fogo_cse < canvas.height) {
 			x_fogo_cse += (650 / 525) * fogo_speed;
 			y_fogo_cse += fogo_speed;
+			//colisão fogo e bolinho de arroz
+			if (
+				//X0,Y0
+				(x_fogo_cse - 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_cse - 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_cse - 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_cse - 90 / 2 <= arroz_d.y+40) ||
+				//Xm,Y0
+				(x_fogo_cse + 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_cse + 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_cse - 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_cse - 90 / 2 <= arroz_d.y+40) ||
+				//X0,Ym
+				(x_fogo_cse - 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_cse - 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_cse + 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_cse + 90 / 2 <= arroz_d.y+40) ||
+				//Xm,Ym
+				(x_fogo_cse + 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_cse + 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_cse + 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_cse + 90 / 2 <= arroz_d.y+40)
+			){
+				num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar no fogo
+				vidas()
+				sorteio_posicoes = 1;// faz o fogo ir para outra posição
+				vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
+				console.log(num_vidas);
+			}
+
+
 			ctx.beginPath(); //Para indicar o começo
 			ctx.drawImage(fogo, x_fogo_cse, y_fogo_cse, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
-		}
-		else{
-			sorteio_posicoes = getRandomInt(3);
-			console.log(sorteio_posicoes);
-		}
     }
 
     // Canto inferior esquerdo
     function cie(){
-		if (x_fogo_cie < canvas.width && y_fogo_cie > 0) {
 			x_fogo_cie += (650 / 525) * fogo_speed;
 			y_fogo_cie -= fogo_speed;
+			//colisão fogo e bolinho de arroz
+			if (
+				//X0,Y0
+				(x_fogo_cie - 30 / 2 >= arroz_d.x-40) &&
+				(x_fogo_cie - 30 / 2 <= arroz_d.x+40) &&
+				(y_fogo_cie - 30 / 2 >= arroz_d.y-40) &&
+				(y_fogo_cie - 30 / 2 <= arroz_d.y+40) ||
+				//Xm,Y0
+				(x_fogo_cie + 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_cie + 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_cie - 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_cie - 90 / 2 <= arroz_d.y+40) ||
+				//X0,Ym
+				(x_fogo_cie - 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_cie - 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_cie + 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_cie + 90 / 2 <= arroz_d.y+40) ||
+				//Xm,Ym
+				(x_fogo_cie + 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_cie + 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_cie + 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_cie + 90 / 2 <= arroz_d.y+40)
+			){
+				num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar no fogo
+				vidas()
+				sorteio_posicoes = 2;// faz o fogo ir para outra posição
+				vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
+				console.log(num_vidas);
+			}
+
+
 			ctx.beginPath(); //Para indicar o começo
 			ctx.drawImage(fogo, x_fogo_cie, y_fogo_cie, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
-		}
-		else{
-			sorteio_posicoes = getRandomInt(3);
-			console.log(sorteio_posicoes);
-		}
     }
 
     //Canto superir direito
     function csd(){
-		if (x_fogo_csd > 0 && y_fogo_csd < canvas.height){
+		
 			x_fogo_csd  -= (650/525)*fogo_speed;
 			y_fogo_csd  += fogo_speed;
+			//colisão fogo e bolinho de arroz
+			if (
+				//X0,Y0
+				(x_fogo_csd- 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_csd - 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_csd - 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_csd - 90 / 2 <= arroz_d.y+40) ||
+				//Xm,Y0
+				(x_fogo_csd + 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_csd + 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_csd - 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_csd - 90 / 2 <= arroz_d.y+40) ||
+				//X0,Ym
+				(x_fogo_csd - 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_csd - 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_csd + 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_csd + 90 / 2 <= arroz_d.y+40) ||
+				//Xm,Ym
+				(x_fogo_csd + 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_csd + 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_csd + 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_csd + 90 / 2 <= arroz_d.y+40)
+			){
+				num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar no fogo
+				vidas()
+				sorteio_posicoes = 3;// faz o fogo ir para outra posição
+				vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
+				console.log(num_vidas);
+			}
+
+
 			ctx.beginPath(); //Para indicar o começo
 			ctx.drawImage(fogo, x_fogo_csd ,y_fogo_csd , 90, 90); //Para desenhar o arroz de acordo com suas novas posições
-		}
-		else{
-			sorteio_posicoes = getRandomInt(3);
-			console.log(sorteio_posicoes);
-		}
-        
     }
 	
 	
     //Canto inferior direito
     function cid(){
-		if (x_fogo_cid > 0 && y_fogo_cid > 0) {
+		
 			x_fogo_cid -= (650 / 525) * fogo_speed;
 			y_fogo_cid -= fogo_speed;
+			//colisão fogo e bolinho de arroz
+			if (
+				//X0,Y0
+				(x_fogo_cid - 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_cid - 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_cid - 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_cid - 90 / 2 <= arroz_d.y+40) ||
+				//Xm,Y0
+				(x_fogo_cid + 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_cid + 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_cid - 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_cid - 90 / 2 <= arroz_d.y+40) ||
+				//X0,Ym
+				(x_fogo_cid - 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_cid - 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_cid + 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_cid + 90 / 2 <= arroz_d.y+40) ||
+				//Xm,Ym
+				(x_fogo_cid + 90 / 2 >= arroz_d.x-40) &&
+				(x_fogo_cid + 90 / 2 <= arroz_d.x+40) &&
+				(y_fogo_cid + 90 / 2 >= arroz_d.y-40) &&
+				(y_fogo_cid + 90 / 2 <= arroz_d.y+40)
+			){
+				num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar no fogo
+				vidas()
+				sorteio_posicoes = 0;// faz o fogo ir para outra posição
+				vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
+				console.log(num_vidas);
+			}
 			ctx.beginPath(); //Para indicar o começo
 			ctx.drawImage(fogo, x_fogo_cid, y_fogo_cid, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
-		}
-		else{
-			sorteio_posicoes = getRandomInt(3);
-			console.log(sorteio_posicoes);
-		}
+		
     }
 
     //################################################################################################################
 
     if (sorteio_posicoes === 0){
+		if (x_fogo_cse <= canvas.width && y_fogo_cse <= canvas.height) {
         cse();// Ativa o canto superior esquerdo
+		}
+		else{
+			sorteio_posicoes = 1;
+			console.log(sorteio_posicoes);
+		}
     }
 
     // Canto inferior esquerdo
     else if (sorteio_posicoes === 1){
+		if (x_fogo_cie < canvas.width && y_fogo_cie > 0) {
         cie();// Ativa o canto inferior esquerdo
+		}
+		else{
+			sorteio_posicoes = 2;
+			console.log(sorteio_posicoes);
+		}
+
     }
 
     //Canto superir direito
     else if (sorteio_posicoes === 2){
-        
+		if (x_fogo_csd > 0 && y_fogo_csd < canvas.height){ 
 		csd();// Ativa o canto superior direito
+		}
+		else{
+			sorteio_posicoes = 3;
+			console.log(sorteio_posicoes);
+		}
     }
 
     //Canto inferior direito
     else if (sorteio_posicoes === 3){
-        
-        
+        if (x_fogo_cid > 0 && y_fogo_cid > 0) {
 		cid();// Ativa o canto superior direto
-		
+		}
+		else{
+			sorteio_posicoes = 4;
+			console.log(sorteio_posicoes);
+		}
 	}
+
 }
+
+
+
 
 
 //#########################################################

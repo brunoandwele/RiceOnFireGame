@@ -1,11 +1,42 @@
-//Pegando o canvas do html e definindo um ctx;
+/*Sumário (Use o ctrl+f para pesquisar pelo índice e encontrar mais fácil!)
+_001.Pegando o canvas do html e definindo um ctx;
+
+_002.Adicionando evento para pegar os valores das teclas pressionadas;
+
+_003.pressinar(e) e soltar(e) são as funções que serão chamadas após os eventos "keydown" e "keyup" forem chamados;
+
+_004.Função resposanvel por contabilizar o número de vidas:
+
+_005.Função para movimentar o jogador 1 (w,a,s,d):
+
+_006.Comidinhas do arroizin
+	_0062.Função para aparecer a comida simples
+	_0063.Comidinha especial!
+
+_007.Fogos
+	_0071Funções de movimentação do Fogo
+
+_008.Boss
+
+_main.Função principal:
+*/
+
+
+
+
+
+
+
+
+
+//_001.Pegando o canvas do html e definindo um ctx;
 let canvas = document.getElementById("my_Canvas");
 let ctx = canvas.getContext("2d");
 
 
 //#########################################################
 //#########################################################
-//Adicionando evento para pegar os valores das teclas pressionadas;
+//_002.Adicionando evento para pegar os valores das teclas pressionadas;
 
 
 document.addEventListener('keydown',pressionar);
@@ -15,7 +46,7 @@ document.addEventListener('keyup',soltar); /*Ao add um evento, precisa-se inform
 let keys = []; /*para salvar que um tecla foi precionada, é necessário criar um vetor para adicionar essa tecla lá
 --------------então criei o vetor "keys"*/
 
-//pressinar(e) e soltar(e) são as funções que serão chamadas após os eventos "keydown" e "keyup" forem chamados;
+//_003.pressinar(e) e soltar(e) são as funções que serão chamadas após os eventos "keydown" e "keyup" forem chamados;
 function pressionar(e) {
 	keys[e.key] = true; //Achei muito estranho, mas é assim que funfa - o que está escrito siginifca que ele irá acrescentar a tecla que pegou à lista
 }
@@ -26,7 +57,7 @@ function soltar(e){
 
 //#########################################################
 //#########################################################
-// Função resposanvel por contabilizar o número de vidas:
+//_004.Função resposanvel por contabilizar o número de vidas:
 
 //Criando variáveis para que seja possível adicionar as informações de vida no html
 let vidas_restantes = document.getElementById('vidas'); //Cria a variável como o texto da tag de id vidas
@@ -48,7 +79,7 @@ function vidas(){
 
 //#########################################################
 //#########################################################
-//Função para movimentar o jogador 1 (w,a,s,d):
+//_005.Função para movimentar o jogador 1 (w,a,s,d):
 
 
 //Aqui adicionei a imagem do arroz;
@@ -126,9 +157,9 @@ function j1_move(){
 
 //#########################################################
 //#########################################################
-//Comidinhas do arroizin
+//_006.Comidinhas do arroizin
 
-//Função para gerar um valor aleatório para depois associar ao x e y;
+//_0061.Função para gerar um valor aleatório para depois associar ao x e y;
 function getRandomInt(max) {
 	return Math.floor(Math.random() * max);
 }
@@ -144,7 +175,7 @@ let pontos = 0  //Cria a variável pontos, para que seja feita a contagem
 
 pontuacao.innerText = pontos; //Adiciona pela primeira vez no html o valor da pontuação, o qual começa no 0!
 
-
+//_0062. Função para aparecer a comida simples
 function comidinha(){
 	
 	//Verificar a colisão - foram definidos 4 pontos da comida, pontos esses que são os cantos do quadrado que forma a imagem;
@@ -172,7 +203,7 @@ function comidinha(){
 
 //#########################################################
 //#########################################################
-//Comidinha especial!
+//_0063.Comidinha especial!
 
 let c_especial = new Image(); c_especial.src = 'c_especial.jpeg'; 
 let contador_especial = 0; 
@@ -210,11 +241,10 @@ function cespecial(){
 
 //#########################################################
 //#########################################################
-//Fogos:
-let sorteio_posicoes = getRandomInt(2);
-let fogo = new Image();
-fogo.src= 'fogo_pixilizado.png';
-let fogo_speed=2;
+//_007.Fogos:
+//let sorteio_posicoes = getRandomInt(2);
+let fogo = new Image(); fogo.src= 'fogo_pixilizado.png'; let fogo_speed=2;
+
 //Coordernadas - Canto superior esquerdo:
 let x_fogo_cse = 0;
 let y_fogo_cse =  0;
@@ -231,10 +261,106 @@ let y_fogo_csd=  0;
 let x_fogo_cid = 560;
 let y_fogo_cid=  435;
 
+
+
+
+let inicio = 1,x_temp, y_temp; //Cria as variaveis temporarias que terao seus valores alterados na função do fogos_move();
+let posicao = getRandomInt(4); //Sorteia a primeira posição
+
+function fogos_move(){
+	/*Essa função funciona da seguinte maneira: Ela primeiro ve o valor já sorteado da variável "posicao", então a partir disso define
+	em qual canto que o fogo sairá! Depois disso, ela configura a posção inicial para sair o fogo, mas isso só uma vez, pois se não daria problema toda
+	vez que entra no loop, para resolver isso coloquei uma variavel chamada inicio que muda o valor de 1 para 0 depois que ja configura os valores iniciais.
+	Então o movimento se baseia em duas variaveis que eu criei para serem temporareia (x_temp e y_temp), então a patir delas que tudo acontecerá.Após o fogo
+	completar seu percurso, a variavel inicio volta para 1 e é sorteado um novo numero para "posicao"*/
+
+	//CSE
+	if (posicao === 0){ //Verifica se o numero sorteado é 0 = canto superior esquerdo
+
+		if (inicio===1){ //Para começar eu defino o x_temp e o y_temp como os valores do canto
+			x_temp = x_fogo_cse; y_temp = y_fogo_cse;
+			inicio = 0; //Quebro esse if, para que nas próximas vezes que entrar ele não redefina a posição do x e y
+		}
+
+		if (x_temp < canvas.width && y_temp < canvas.height) { //repito até ele chegar no canto oposto
+			x_temp += (650 / 525) * fogo_speed;
+			y_temp += fogo_speed;
+			ctx.drawImage(fogo, x_temp, y_temp, 90, 90);
+		}else{
+			inicio = 1; posicao=getRandomInt(4); //Retomo a variável incio para 1, pois dai na proxima vez ele vai ter que ressetar o valor de x e y em relacao ao canto dele
+			//Além disso, sorteio um novo número para a posicao, para que ele troque ela
+
+		}
+
+	}
+
+	//CSD
+	else if (posicao === 1){
+
+		if (inicio===1){
+			x_temp = x_fogo_csd; y_temp = y_fogo_csd;
+			inicio = 0;
+		}
+
+		if (x_temp > 0 && y_temp < canvas.height) {
+			x_temp -= (650 / 525) * fogo_speed;
+			y_temp += fogo_speed;
+			ctx.drawImage(fogo, x_temp, y_temp, 90, 90);
+		}else{
+			inicio = 1; posicao=getRandomInt(4);
+
+		}
+
+	}
+
+	//CIE
+	else if (posicao === 2){
+
+		if (inicio===1){
+			x_temp = x_fogo_cie; y_temp = y_fogo_cie;
+			inicio = 0;
+
+		}
+
+		if (x_temp < canvas.width && y_temp > 0) {
+			x_temp += (650 / 525) * fogo_speed;
+			y_temp -= fogo_speed;
+			ctx.drawImage(fogo, x_temp, y_temp, 90, 90);
+		}else{
+			inicio = 1; posicao=getRandomInt(4);
+
+		}
+
+	}
+
+	//CID
+	else if (posicao === 3){
+
+		if (inicio===1){
+			x_temp = x_fogo_cid; y_temp = y_fogo_cid;
+			inicio = 0;
+		}
+
+		if (x_temp > 0 && y_temp > 0) {
+			x_temp -= (650 / 525) * fogo_speed;
+			y_temp -= fogo_speed;
+			ctx.drawImage(fogo, x_temp, y_temp, 90, 90);
+		}else{
+			inicio = 1; posicao=getRandomInt(4);
+
+		}
+
+	}
+
+}
+
+/*
+
+
 let completar = 0;
 function foguinho(){
 
-    //Funções de movimentação do Fogo
+    //_0071Funções de movimentação do Fogo
     // Canto superior esquerdo
     function cse(){
 			x_fogo_cse += (650 / 525) * fogo_speed;
@@ -444,20 +570,20 @@ function foguinho(){
 
 
 
-
+*/
 //#########################################################
 //#########################################################
-//Boss
+//_008.Boss
 
 let boss = new Image(); boss.src='fogo_pixilizado.png'; //Criando e adicionando a imagem do boss
 
 //São os dados do boss
 let boss_d = {
-	h:80,
-	w:50,
+	h:90,
+	w:90,
 	x:(canvas.width/2),
-	y:50,
-	speed: 1
+	y:45,
+	speed:3
 }
 
 //Ele perseguirá o arroizin, então é necessário fazer um sistema de chasing comparando os x e y
@@ -500,7 +626,7 @@ function boss_move(pontos){
 		){
 			num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
 			boss_d.x = canvas.width/2;//retorna o bolinho de arroz para a posição inicial
-			boss_d.y=80;//retorna o bolinho de arroz para a posição inicial
+			boss_d.y=45;//retorna o bolinho de arroz para a posição inicial
 			vidas()
 			vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
 			console.log(num_vidas);
@@ -522,8 +648,7 @@ function boss_move(pontos){
 //#############################################################################################################
 //-------------------------------------------------------------------------------------------------------------
 //#############################################################################################################
-//Função principal:
-
+//_main.Função principal:
 
 function main(){
 	requestAnimationFrame(main); //Para pedir que o site chame novamente essa função toda vez que atualizar
@@ -531,9 +656,8 @@ function main(){
 	comidinha(); //Chama a função de desenhar a comida
 	cespecial();
 	j1_move(); //chamando a função do jogador1 (arroz)
-	foguinho();
+	//foguinho();
+	fogos_move();
 	boss_move(pontos);
 }
-
 main(); //Chamando a função principal.
-

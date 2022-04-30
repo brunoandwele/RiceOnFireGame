@@ -83,7 +83,7 @@ function vidas(){
 
 
 //Aqui adicionei a imagem do arroz;
-let arroz = new Image(); arroz.src= 'arrozin.png';
+let arroz = new Image(); arroz.src= 'img/arrozin.png';
 let arroz_d={
 	speed:8,
 	x: (canvas.width/2),
@@ -167,7 +167,7 @@ function getRandomInt(max) {
 //São os elementos da comida! - valores x e y iniciais e fonte da imagem
 let x_comida = getRandomInt(canvas.width-60)+30; //Defini um valor inicial aleatório para x
 let y_comida = getRandomInt(canvas.height-50)+25;//Defini um valor inicial aleatório para y
-let comida = new Image(); comida.src = "comidinha.jpeg";
+let comida = new Image(); comida.src = "img/comidinha.jpeg";
 
 //Criando variáveis para que seja possível adicionar as informações de pontuação no html
 let pontuacao = document.getElementById('pontos'); //Cria a variável como o texto da tag de id pontos
@@ -205,7 +205,7 @@ function comidinha(){
 //#########################################################
 //_0063.Comidinha especial!
 
-let c_especial = new Image(); c_especial.src = 'c_especial.jpeg'; 
+let c_especial = new Image(); c_especial.src = 'img/c_especial.jpeg'; 
 let contador_especial = 0; 
 let x_cEspecial = getRandomInt(canvas.width-90) + 30; let y_cEspecial = getRandomInt(canvas.height-75) + 25;
 
@@ -243,7 +243,7 @@ function cespecial(){
 //#########################################################
 //_007.Fogos:
 //let sorteio_posicoes = getRandomInt(2);
-let fogo = new Image(); fogo.src= 'fogo_pixilizado.png'; let fogo_speed=2;
+let fogo = new Image(); fogo.src= 'img/fogo_pixilizado.png'; let fogo_speed=2;
 
 //Coordernadas - Canto superior esquerdo:
 let x_fogo_cse = 0;
@@ -575,7 +575,7 @@ function foguinho(){
 //#########################################################
 //_008.Boss
 
-let boss = new Image(); boss.src='fogo_pixilizado.png'; //Criando e adicionando a imagem do boss
+let boss = new Image(); boss.src='img/fogo_pixilizado.png'; //Criando e adicionando a imagem do boss
 
 //São os dados do boss
 let boss_d = {

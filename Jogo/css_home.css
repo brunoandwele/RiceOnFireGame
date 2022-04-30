@@ -1,47 +1,89 @@
 /*Css-página principal*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 body {
-    /*Cor de fundo*/
-    background-image: linear-gradient(red, yellow);
-    backround-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    font-family: Poppins;
+  /*Cor de fundo*/
+  background-image: linear-gradient(red, yellow);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: Poppins;
+  padding: 0;
+  margin: 0;
+}
+/*#########################################################################################*/
+/*Menu*/
+
+#menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(49, 49, 49);
+  margin-bottom: 5vh;
+  padding: 2vh;
+  font-family: "Press Start 2P", cursive;
+}
+
+#menu a {
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  padding: 40px;
+}
+
+#menu a:hover {
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  background-color: rgb(49, 49, 49);
+  padding: 20px;
+  transition: all 0.8s ease;
 }
 
 /*#########################################################################################*/
 /*Título*/
 
-.div_title{
-    display:flex; flex-flow: row nowrap; justify-content:center;
-    align-items: center;
-    width: 100%;
+.div_title {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-family: "Press Start 2P", cursive;
+  font-size: 1.5vh;
 }
 
-mark{
-    background-color: orangered;
-    color: yellow;
+mark {
+  background-color: orangered;
+  color: yellow;
 } /*Deixa grifado o trecho la do nome do jogo*/
-
-
 
 /*#########################################################################################*/
 /*Div contendo uma breve explicação do jogo */
-.div_explain{
-    text-align: center; font-size:20pt ;
+.div_explain {
+  text-align: center;
+  font-size: 20pt;
 
-    background-color:white; border: 3px solid black; border-radius: 6px;
-    margin: 0 auto; width: fit-content; padding: 5px;
-
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 6px;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 5px;
 }
 
 /*Div maior das instruções */
-.div_comoJogar{
-    display:flex; flex-flow: row wrap; justify-content:center;
-    align-items: center; gap:30px 30px; width:100%;
+.div_comoJogar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px 30px;
+  width: 100%;
 
-    margin-top:10px;
-
+  margin-top: 10px;
 }
 
 /*--------------------------------------*/
@@ -49,31 +91,46 @@ mark{
 
 /*Primeiro Bloco*/
 /*Div com os comandos e a imagem do teclado*/
-.div_instrucoes{
-    display:flex; flex-flow: column wrap; justify-content:center;
-    align-items: center; width:fit-content;
+.div_instrucoes {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
 
-    background-color:white; border: 3px solid black; border-radius: 6px;
-    padding: 5px;
-
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 6px;
+  padding: 5px;
 }
 /*Div onde se encontram a lista com os comandos (sem imagem)*/
-.div_comandos{
-    display:flex; flex-flow: row wrap; justify-content:center;
-    align-items: center;
+.div_comandos {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 
-    font-size:14pt;
+  font-size: 14pt;
 }
 
 /*--------------------------------------*/
 /*Segundo Bloco - objetivos e desafios do jogo*/
-.div_instrucoes2{
-    display:flex; flex-flow: column wrap; justify-content:center;
-    align-items: center; width:50%;
+.div_instrucoes2 {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
 
-    background-color:white; border: 3px solid black; border-radius: 6px;
-    padding: 5px;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 6px;
+  padding: 5px;
 
-    font-size:14pt;
+  font-size: 14pt;
 }
-
+/*--------------------------------------*/
+/*Segundo Bloco - dar espaçamento entre as instruções*/
+li {
+  padding: 0.8rem;
+}

@@ -86,11 +86,13 @@ function vidas(){
 let arroz = new Image(); arroz.src= 'img/arrozin.png';
 let arroz_d={
 	speed:8,
-	x: (canvas.width/2),
+	x:(canvas.width/2),
 	y:(canvas.height/2),
 	w:80,
 	h:80
 }
+
+let x_arroz,y_arroz;
 
 function j1_move(){
 		/*Condições para ver se uma tecla está sendo pressionada (ele verifica se a tecla está dentro do vetor
@@ -147,11 +149,12 @@ function j1_move(){
 		vidas_restantes.innerText = num_vidas.toString()//Atualiza no HTML o valor do número de vidas
 		console.log(num_vidas);
 	}
-	
+	x_arroz = arroz_d.x - arroz_d.w/2;
+	y_arroz = arroz_d.y - arroz_d.h/2;
 	
 
 	ctx.beginPath(); //Para indicar o começo
-	ctx.drawImage(arroz, arroz_d.x - arroz_d.w/2, arroz_d.y - arroz_d.h/2, arroz_d.w, arroz_d.h); //Para desenhar o arroz de acordo com suas novas posições
+	ctx.drawImage(arroz, x_arroz, y_arroz, arroz_d.w, arroz_d.h); //Para desenhar o arroz de acordo com suas novas posições
 	
 }
 
@@ -581,65 +584,84 @@ let boss = new Image(); boss.src='img/fogo_pixilizado.png'; //Criando e adiciona
 let boss_d = {
 	h:90,
 	w:90,
-	x:(canvas.width/2),
-	y:45,
-	speed:3
+	speed:1.5
 }
+
+let x_boss = canvas.width/2;
+let y_boss = (boss_d.w/2);
+
+y_boss = y_boss - (boss_d.h/2);
+x_boss = x_boss - (boss_d.w/2);
+
 
 //Ele perseguirá o arroizin, então é necessário fazer um sistema de chasing comparando os x e y
 function boss_move(pontos){
-	if (pontos>=5) {
+	
+	if (pontos>=0) {
 		//Condições para caçar o arroz
-		if ( arroz_d.x > boss_d.x ) {
-			boss_d.x += boss_d.speed;
+		if ( x_arroz > x_boss ) {
+			x_boss += boss_d.speed;
+			
 		} else {
-			boss_d.x -= boss_d.speed;
+			x_boss -= boss_d.speed;
+			
 		}
 
-		if ( arroz_d.y > boss_d.y ) {
-			boss_d.y += boss_d.speed;
+		if ( y_arroz > y_boss ) {
+			y_boss += boss_d.speed;
+			
 		} else {
-			boss_d.y -= boss_d.speed;
+			y_boss -= boss_d.speed;
+			
 		}
 		
 		if (
 			//X0,Y0
-			(boss_d.x - boss_d.w / 2 >= arroz_d.x-40) &&
-			(boss_d.x - boss_d.w / 2 <= arroz_d.x+40) &&
-			(boss_d.y - boss_d.h / 2 >= arroz_d.y-40) &&
-			(boss_d.y - boss_d.h / 2 <= arroz_d.y+40) ||
-			//Xm,Y0
-			(boss_d.x + boss_d.w / 2 >= arroz_d.x-40) &&
-			(boss_d.x + boss_d.w / 2 <= arroz_d.x+40) &&
-			(boss_d.y - boss_d.h / 2 >= arroz_d.y-40) &&
-			(boss_d.y - boss_d.h / 2 <= arroz_d.y+40) ||
+			(x_boss > x_arroz) &&
+			(x_boss < x_arroz + arroz_d.w) &&
+			
+			(y_boss > y_arroz) &&
+			(y_boss < y_arroz + arroz_d.h) ||
+			
 			//X0,Ym
-			(boss_d.x - boss_d.w / 2 >= arroz_d.x-40) &&
-			(boss_d.x - boss_d.w / 2 <= arroz_d.x+40) &&
-			(boss_d.y + boss_d.h / 2 >= arroz_d.y-40) &&
-			(boss_d.y + boss_d.h / 2 <= arroz_d.y+40) ||
+			(x_boss > x_arroz) &&
+			(x_boss < x_arroz + arroz_d.w) &&
+			
+			(y_boss + boss_d.h > y_arroz) &&
+			(y_boss + boss_d.h < y_arroz + arroz_d.h) ||
+			
+			//Xm,Y0
+			(x_boss + boss_d.w > x_arroz) &&
+			(x_boss + boss_d.w < x_arroz + arroz_d.w) &&
+			
+			(y_boss > y_arroz) &&
+			(y_boss < y_arroz + arroz_d.h) ||
+			
 			//Xm,Ym
-			(boss_d.x + boss_d.w / 2 >= arroz_d.x-40) &&
-			(boss_d.x + boss_d.w / 2 <= arroz_d.x+40) &&
-			(boss_d.y + boss_d.h / 2 >= arroz_d.y-40) &&
-			(boss_d.y + boss_d.h / 2 <= arroz_d.y+40)
+			(x_boss + boss_d.w > x_arroz) &&
+			(x_boss + boss_d.w < x_arroz + arroz_d.w) &&
+			
+			(y_boss + boss_d.h > y_arroz) &&
+			(y_boss + boss_d.h < y_arroz + arroz_d.h)
+			
+			
 		){
+			
 			num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
 			boss_d.x = canvas.width/2;//retorna o bolinho de arroz para a posição inicial
 			boss_d.y=45;//retorna o bolinho de arroz para a posição inicial
 			vidas()
 			vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
-			console.log(num_vidas);
+			
+			x_boss = canvas.width/2;
+			y_boss = (boss_d.w/2);
+			
 		}
-
+		
 		ctx.beginPath();
-		ctx.drawImage(boss, boss_d.x - boss_d.w / 2, boss_d.y - boss_d.h / 2, boss_d.w, boss_d.h); //Desenha o arroz de acordo com seus dados
+		ctx.drawImage(boss, x_boss, y_boss, boss_d.w, boss_d.h); //Desenha o arroz de acordo com seus dados
 
 	}
-
-	//Colisao
-
-	
 }
 
 

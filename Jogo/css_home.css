@@ -53,6 +53,8 @@ body {
   width: 100%;
   font-family: "Press Start 2P", cursive;
   font-size: 1.5vh;
+  gap: 10px 10px;
+  padding-bottom: 20px;
 }
 
 mark {

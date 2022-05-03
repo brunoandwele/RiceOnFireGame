@@ -27,6 +27,7 @@ body {
   font-size: 15pt;
   margin-bottom: 5vh;
   text-align: center;
+
 }
 
 #titulo_img {
@@ -34,6 +35,8 @@ body {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  gap: 10px 10px;
+  padding-bottom: 20px;
 }
 
 #pontos {

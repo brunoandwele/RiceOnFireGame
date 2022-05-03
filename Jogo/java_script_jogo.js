@@ -73,7 +73,7 @@ function vidas(){
 	else
 	{
 		location.reload(); //Para dar reload na página após perder o jogo;
-		alert("Game over");//fim de jogo
+		alert("Game over"+ "\nTotal pontos: " +pontos);//fim de jogo
 	}
 }
 
@@ -288,8 +288,9 @@ function fogos_move(){
 		if (x_temp < canvas.width && y_temp < canvas.height) { //repito até ele chegar no canto oposto
 			x_temp += (650 / 525) * fogo_speed;
 			y_temp += fogo_speed;
-			ctx.drawImage(fogo, x_temp, y_temp, 90, 90);
-		}else{
+			ctx.drawImage(fogo, x_temp, y_temp, 65, 70);
+		}
+		else{
 			inicio = 1; posicao=getRandomInt(4); //Retomo a variável incio para 1, pois dai na proxima vez ele vai ter que ressetar o valor de x e y em relacao ao canto dele
 			//Além disso, sorteio um novo número para a posicao, para que ele troque ela
 
@@ -308,7 +309,7 @@ function fogos_move(){
 		if (x_temp > 0 && y_temp < canvas.height) {
 			x_temp -= (650 / 525) * fogo_speed;
 			y_temp += fogo_speed;
-			ctx.drawImage(fogo, x_temp, y_temp, 90, 90);
+			ctx.drawImage(fogo, x_temp, y_temp, 65, 70);
 		}else{
 			inicio = 1; posicao=getRandomInt(4);
 
@@ -328,7 +329,7 @@ function fogos_move(){
 		if (x_temp < canvas.width && y_temp > 0) {
 			x_temp += (650 / 525) * fogo_speed;
 			y_temp -= fogo_speed;
-			ctx.drawImage(fogo, x_temp, y_temp, 90, 90);
+			ctx.drawImage(fogo, x_temp, y_temp, 65, 70);
 		}else{
 			inicio = 1; posicao=getRandomInt(4);
 
@@ -347,14 +348,59 @@ function fogos_move(){
 		if (x_temp > 0 && y_temp > 0) {
 			x_temp -= (650 / 525) * fogo_speed;
 			y_temp -= fogo_speed;
-			ctx.drawImage(fogo, x_temp, y_temp, 90, 90);
+			ctx.drawImage(fogo, x_temp, y_temp, 65, 70);
 		}else{
 			inicio = 1; posicao=getRandomInt(4);
 
 		}
 
 	}
-
+	//colisão
+	if (
+		//X0,Y0
+		(x_temp > x_arroz) &&
+		(x_temp < x_arroz + arroz_d.w) &&
+		
+		(y_temp > y_arroz) &&
+		(y_temp < y_arroz + arroz_d.h) ||
+		
+		//X0,Ym
+		(x_temp > x_arroz) &&
+		(x_temp < x_arroz + arroz_d.w) &&
+		
+		(y_temp + 70 > y_arroz) &&
+		(y_temp + 70 < y_arroz + arroz_d.h) ||
+		
+		//Xm,Y0
+		(x_temp + 65 > x_arroz) &&
+		(x_temp + 65 < x_arroz + arroz_d.w) &&
+		
+		(y_temp > y_arroz) &&
+		(y_temp < y_arroz + arroz_d.h) ||
+		
+		//Xm,Ym
+		(x_temp + 65 > x_arroz) &&
+		(x_temp + 65 < x_arroz + arroz_d.w) &&
+		
+		(y_temp + 70 > y_arroz) &&
+		(y_temp + 70 < y_arroz + arroz_d.h)
+	
+	
+	){
+		
+		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
+		boss_d.x = canvas.width/2;//retorna o bolinho de arroz para a posição inicial
+		boss_d.y=45;//retorna o bolinho de arroz para a posição inicial
+		vidas()
+		vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
+		
+		x_boss = canvas.width/2;
+		y_boss = (boss_d.w/2);
+		
+		inicio = 1;
+		posicao=getRandomInt(4);
+		
+	}
 }
 
 /*
@@ -582,8 +628,8 @@ let boss = new Image(); boss.src='img/fogo_pixilizado.png'; //Criando e adiciona
 
 //São os dados do boss
 let boss_d = {
-	h:90,
-	w:90,
+	h:70,
+	w:65,
 	speed:1.5
 }
 
@@ -597,7 +643,7 @@ x_boss = x_boss - (boss_d.w/2);
 //Ele perseguirá o arroizin, então é necessário fazer um sistema de chasing comparando os x e y
 function boss_move(pontos){
 	
-	if (pontos>=0) {
+	if (pontos>=15) {
 		//Condições para caçar o arroz
 		if ( x_arroz > x_boss ) {
 			x_boss += boss_d.speed;
@@ -655,6 +701,8 @@ function boss_move(pontos){
 			
 			x_boss = canvas.width/2;
 			y_boss = (boss_d.w/2);
+			inicio = 1;
+			posicao=getRandomInt(4);
 			
 		}
 		
@@ -682,4 +730,3 @@ function main(){
 	fogos_move();
 	boss_move(pontos);
 }
-main(); //Chamando a função principal.

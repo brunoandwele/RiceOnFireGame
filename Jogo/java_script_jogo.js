@@ -729,4 +729,5 @@ function main(){
 	//foguinho();
 	fogos_move();
 	boss_move(pontos);
+	
 }

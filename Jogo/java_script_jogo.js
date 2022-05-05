@@ -116,18 +116,32 @@ function j1_move(){
 	if (arroz_d.x - arroz_d.w/2 >= (canvas.width-80)){
         //x_arroz = canvas.width - 80;
 		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
+		boss_d.x = canvas.width/2;//retorna o bolinho de arroz para a posição inicial
+		boss_d.y=45;//retorna o bolinho de arroz para a posição inicial
 		vidas()
-		vidas_restantes.innerText = num_vidas.toString()//Atualiza no HTML o valor do número de vidas
-		console.log(num_vidas);
+		vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
+
+		x_boss = canvas.width/2;
+		y_boss = (boss_d.w/2);
+
+		inicio = 1;
+		posicao=getRandomInt(4);
     }
 
 	/*Lateral esquerda*/
 	if (arroz_d.x - arroz_d.w/2 <= (0)){
 		//x_arroz = 40;
 		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
+		boss_d.x = canvas.width/2;//retorna o bolinho de arroz para a posição inicial
+		boss_d.y=45;//retorna o bolinho de arroz para a posição inicial
 		vidas()
-		vidas_restantes.innerText = num_vidas.toString()//Atualiza no HTML o valor do número de vidas
-		console.log(num_vidas);
+		vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
+
+		x_boss = canvas.width/2;
+		y_boss = (boss_d.w/2);
+
+		inicio = 1;
+		posicao=getRandomInt(4);
 		
 	}
 
@@ -135,9 +149,16 @@ function j1_move(){
 	if (arroz_d.y - arroz_d.h/2 >= (canvas.height-80)){
 		//y_arroz = canvas.height - 80;
 		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
+		boss_d.x = canvas.width/2;//retorna o bolinho de arroz para a posição inicial
+		boss_d.y=45;//retorna o bolinho de arroz para a posição inicial
 		vidas()
 		vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
-		console.log(num_vidas);
+
+		x_boss = canvas.width/2;
+		y_boss = (boss_d.w/2);
+
+		inicio = 1;
+		posicao=getRandomInt(4);
 		
    	}
    
@@ -145,9 +166,16 @@ function j1_move(){
    	if (arroz_d.y - arroz_d.h/2 <= (0)){
 		//y_arroz = 40;
 		num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar na parede
+		boss_d.x = canvas.width/2;//retorna o bolinho de arroz para a posição inicial
+		boss_d.y=45;//retorna o bolinho de arroz para a posição inicial
 		vidas()
-		vidas_restantes.innerText = num_vidas.toString()//Atualiza no HTML o valor do número de vidas
-		console.log(num_vidas);
+		vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
+
+		x_boss = canvas.width/2;
+		y_boss = (boss_d.w/2);
+
+		inicio = 1;
+		posicao=getRandomInt(4);
 	}
 	x_arroz = arroz_d.x - arroz_d.w/2;
 	y_arroz = arroz_d.y - arroz_d.h/2;

@@ -21,23 +21,15 @@ _008.Boss
 _main.Função principal:
 */
 
-
-
-
-
-
-
-
-
 //_001.Pegando o canvas do html e definindo um ctx;
+
 let canvas = document.getElementById("my_Canvas");
 let ctx = canvas.getContext("2d");
 
+//#########################################################
+//#########################################################
 
-//#########################################################
-//#########################################################
 //_002.Adicionando evento para pegar os valores das teclas pressionadas;
-
 
 document.addEventListener('keydown',pressionar);
 document.addEventListener('keyup',soltar); /*Ao add um evento, precisa-se informar o tipo de evento
@@ -46,7 +38,11 @@ document.addEventListener('keyup',soltar); /*Ao add um evento, precisa-se inform
 let keys = []; /*para salvar que um tecla foi precionada, é necessário criar um vetor para adicionar essa tecla lá
 --------------então criei o vetor "keys"*/
 
+//#########################################################
+//#########################################################
+
 //_003.pressinar(e) e soltar(e) são as funções que serão chamadas após os eventos "keydown" e "keyup" forem chamados;
+
 function pressionar(e) {
 	keys[e.key] = true; //Achei muito estranho, mas é assim que funfa - o que está escrito siginifca que ele irá acrescentar a tecla que pegou à lista
 }
@@ -57,6 +53,7 @@ function soltar(e){
 
 //#########################################################
 //#########################################################
+
 //_004.Função resposanvel por contabilizar o número de vidas:
 
 //Criando variáveis para que seja possível adicionar as informações de vida no html
@@ -79,8 +76,8 @@ function vidas(){
 
 //#########################################################
 //#########################################################
-//_005.Função para movimentar o jogador 1 (w,a,s,d):
 
+//_005.Função para movimentar o jogador 1 (w,a,s,d):
 
 //Aqui adicionei a imagem do arroz;
 let arroz = new Image(); arroz.src= 'img/arrozin.png';
@@ -188,6 +185,7 @@ function j1_move(){
 
 //#########################################################
 //#########################################################
+
 //_006.Comidinhas do arroizin
 
 //_0061.Função para gerar um valor aleatório para depois associar ao x e y;
@@ -234,6 +232,7 @@ function comidinha(){
 
 //#########################################################
 //#########################################################
+
 //_0063.Comidinha especial!
 
 let c_especial = new Image(); c_especial.src = 'img/c_especial.jpeg'; 
@@ -272,6 +271,7 @@ function cespecial(){
 
 //#########################################################
 //#########################################################
+
 //_007.Fogos:
 //let sorteio_posicoes = getRandomInt(2);
 let fogo = new Image(); fogo.src= 'img/fogo_pixilizado.png'; let fogo_speed=2;
@@ -431,225 +431,10 @@ function fogos_move(){
 	}
 }
 
-/*
 
-
-let completar = 0;
-function foguinho(){
-
-    //_0071Funções de movimentação do Fogo
-    // Canto superior esquerdo
-    function cse(){
-			x_fogo_cse += (650 / 525) * fogo_speed;
-			y_fogo_cse += fogo_speed;
-			//colisão fogo e bolinho de arroz
-			if (
-				//X0,Y0
-				(x_fogo_cse - 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_cse - 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_cse - 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_cse - 90 / 2 <= arroz_d.y+40) ||
-				//Xm,Y0
-				(x_fogo_cse + 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_cse + 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_cse - 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_cse - 90 / 2 <= arroz_d.y+40) ||
-				//X0,Ym
-				(x_fogo_cse - 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_cse - 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_cse + 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_cse + 90 / 2 <= arroz_d.y+40) ||
-				//Xm,Ym
-				(x_fogo_cse + 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_cse + 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_cse + 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_cse + 90 / 2 <= arroz_d.y+40)
-			){
-				num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar no fogo
-				vidas()
-				sorteio_posicoes = 1;// faz o fogo ir para outra posição
-				vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
-				console.log(num_vidas);
-			}
-
-
-			ctx.beginPath(); //Para indicar o começo
-			ctx.drawImage(fogo, x_fogo_cse, y_fogo_cse, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
-    }
-
-    // Canto inferior esquerdo
-    function cie(){
-			x_fogo_cie += (650 / 525) * fogo_speed;
-			y_fogo_cie -= fogo_speed;
-			//colisão fogo e bolinho de arroz
-			if (
-				//X0,Y0
-				(x_fogo_cie - 30 / 2 >= arroz_d.x-40) &&
-				(x_fogo_cie - 30 / 2 <= arroz_d.x+40) &&
-				(y_fogo_cie - 30 / 2 >= arroz_d.y-40) &&
-				(y_fogo_cie - 30 / 2 <= arroz_d.y+40) ||
-				//Xm,Y0
-				(x_fogo_cie + 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_cie + 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_cie - 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_cie - 90 / 2 <= arroz_d.y+40) ||
-				//X0,Ym
-				(x_fogo_cie - 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_cie - 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_cie + 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_cie + 90 / 2 <= arroz_d.y+40) ||
-				//Xm,Ym
-				(x_fogo_cie + 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_cie + 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_cie + 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_cie + 90 / 2 <= arroz_d.y+40)
-			){
-				num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar no fogo
-				vidas()
-				sorteio_posicoes = 2;// faz o fogo ir para outra posição
-				vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
-				console.log(num_vidas);
-			}
-
-
-			ctx.beginPath(); //Para indicar o começo
-			ctx.drawImage(fogo, x_fogo_cie, y_fogo_cie, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
-    }
-
-    //Canto superir direito
-    function csd(){
-		
-			x_fogo_csd  -= (650/525)*fogo_speed;
-			y_fogo_csd  += fogo_speed;
-			//colisão fogo e bolinho de arroz
-			if (
-				//X0,Y0
-				(x_fogo_csd- 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_csd - 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_csd - 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_csd - 90 / 2 <= arroz_d.y+40) ||
-				//Xm,Y0
-				(x_fogo_csd + 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_csd + 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_csd - 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_csd - 90 / 2 <= arroz_d.y+40) ||
-				//X0,Ym
-				(x_fogo_csd - 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_csd - 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_csd + 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_csd + 90 / 2 <= arroz_d.y+40) ||
-				//Xm,Ym
-				(x_fogo_csd + 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_csd + 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_csd + 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_csd + 90 / 2 <= arroz_d.y+40)
-			){
-				num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar no fogo
-				vidas()
-				sorteio_posicoes = 3;// faz o fogo ir para outra posição
-				vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
-				console.log(num_vidas);
-			}
-
-
-			ctx.beginPath(); //Para indicar o começo
-			ctx.drawImage(fogo, x_fogo_csd ,y_fogo_csd , 90, 90); //Para desenhar o arroz de acordo com suas novas posições
-    }
-	
-	
-    //Canto inferior direito
-    function cid(){
-		
-			x_fogo_cid -= (650 / 525) * fogo_speed;
-			y_fogo_cid -= fogo_speed;
-			//colisão fogo e bolinho de arroz
-			if (
-				//X0,Y0
-				(x_fogo_cid - 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_cid - 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_cid - 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_cid - 90 / 2 <= arroz_d.y+40) ||
-				//Xm,Y0
-				(x_fogo_cid + 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_cid + 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_cid - 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_cid - 90 / 2 <= arroz_d.y+40) ||
-				//X0,Ym
-				(x_fogo_cid - 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_cid - 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_cid + 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_cid + 90 / 2 <= arroz_d.y+40) ||
-				//Xm,Ym
-				(x_fogo_cid + 90 / 2 >= arroz_d.x-40) &&
-				(x_fogo_cid + 90 / 2 <= arroz_d.x+40) &&
-				(y_fogo_cid + 90 / 2 >= arroz_d.y-40) &&
-				(y_fogo_cid + 90 / 2 <= arroz_d.y+40)
-			){
-				num_vidas -=1;//Contabiliza o número de vidas que foram perdidas ao escostar no fogo
-				vidas()
-				sorteio_posicoes = 0;// faz o fogo ir para outra posição
-				vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
-				console.log(num_vidas);
-			}
-			ctx.beginPath(); //Para indicar o começo
-			ctx.drawImage(fogo, x_fogo_cid, y_fogo_cid, 90, 90); //Para desenhar o arroz de acordo com suas novas posições
-		
-    }
-
-    //################################################################################################################
-
-    if (sorteio_posicoes === 0){
-		if (x_fogo_cse <= canvas.width && y_fogo_cse <= canvas.height) {
-        cse();// Ativa o canto superior esquerdo
-		}
-		else{
-			sorteio_posicoes = 1;
-			console.log(sorteio_posicoes);
-		}
-    }
-
-    // Canto inferior esquerdo
-    else if (sorteio_posicoes === 1){
-		if (x_fogo_cie < canvas.width && y_fogo_cie > 0) {
-        cie();// Ativa o canto inferior esquerdo
-		}
-		else{
-			sorteio_posicoes = 2;
-			console.log(sorteio_posicoes);
-		}
-
-    }
-
-    //Canto superir direito
-    else if (sorteio_posicoes === 2){
-		if (x_fogo_csd > 0 && y_fogo_csd < canvas.height){ 
-		csd();// Ativa o canto superior direito
-		}
-		else{
-			sorteio_posicoes = 3;
-			console.log(sorteio_posicoes);
-		}
-    }
-
-    //Canto inferior direito
-    else if (sorteio_posicoes === 3){
-        if (x_fogo_cid > 0 && y_fogo_cid > 0) {
-		cid();// Ativa o canto superior direto
-		}
-		else{
-			sorteio_posicoes = 4;
-			console.log(sorteio_posicoes);
-		}
-	}
-
-}
-
-
-
-
-*/
 //#########################################################
 //#########################################################
+
 //_008.Boss
 
 let boss = new Image(); boss.src='img/fogo_pixilizado.png'; //Criando e adicionando a imagem do boss
@@ -746,6 +531,7 @@ function boss_move(pontos){
 //#############################################################################################################
 //-------------------------------------------------------------------------------------------------------------
 //#############################################################################################################
+
 //_main.Função principal:
 
 function main(){
@@ -754,7 +540,6 @@ function main(){
 	comidinha(); //Chama a função de desenhar a comida
 	cespecial();
 	j1_move(); //chamando a função do jogador1 (arroz)
-	//foguinho();
 	fogos_move();
 	boss_move(pontos);
 	

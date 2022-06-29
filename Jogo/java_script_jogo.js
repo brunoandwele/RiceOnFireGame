@@ -3,7 +3,7 @@ _001.Pegando o canvas do html e definindo um ctx;
 
 _002.Adicionando evento para pegar os valores das teclas pressionadas;
 
-_003.pressinar(e) e soltar(e) são as funções que serão chamadas após os eventos "keydown" e "keyup" forem chamados;
+_003.'pressinar(e)' e 'soltar(e)' são as funções que serão chamadas após os eventos "keydown" e "keyup" forem chamados;
 
 _004.Função resposanvel por contabilizar o número de vidas:
 
@@ -118,10 +118,11 @@ function j1_move(){
 		vidas()
 		vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
 
+        //Volta o boss e os mini_boss para as posições iniciais
 		x_boss = canvas.width/2;
 		y_boss = (boss_d.w/2);
-
-		inicio = 1;
+        
+		inicio = 1; 
 		posicao=getRandomInt(4);
     }
 
@@ -134,10 +135,11 @@ function j1_move(){
 		vidas()
 		vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
 
+        //Volta o boss e os mini_boss para as posições iniciais
 		x_boss = canvas.width/2;
 		y_boss = (boss_d.w/2);
-
-		inicio = 1;
+        
+		inicio = 1; 
 		posicao=getRandomInt(4);
 		
 	}
@@ -151,10 +153,11 @@ function j1_move(){
 		vidas()
 		vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
 
+        //Volta o boss e os mini_boss para as posições iniciais
 		x_boss = canvas.width/2;
 		y_boss = (boss_d.w/2);
-
-		inicio = 1;
+        
+		inicio = 1; 
 		posicao=getRandomInt(4);
 		
    	}
@@ -168,12 +171,14 @@ function j1_move(){
 		vidas()
 		vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
 
+        //Volta o boss e os mini_boss para as posições iniciais
 		x_boss = canvas.width/2;
 		y_boss = (boss_d.w/2);
-
-		inicio = 1;
+        
+		inicio = 1; 
 		posicao=getRandomInt(4);
 	}
+
 	x_arroz = arroz_d.x - arroz_d.w/2;
 	y_arroz = arroz_d.y - arroz_d.h/2;
 	
@@ -186,17 +191,17 @@ function j1_move(){
 //#########################################################
 //#########################################################
 
-//_006.Comidinhas do bolinho de arroz
+//_006.Sistemas de pontuação
 
-//_0061.Função para gerar um valor aleatório para depois associar ao x e y;
+//_0061.Função para gerar um valor aleatório - será usado para definir o x e o y dos alimentos(sushi), aparecendo aleatoriamente no canvas;
 function getRandomInt(max) {
 	return Math.floor(Math.random() * max);
 }
 
-//São os elementos da comida! - valores x e y iniciais e fonte da imagem
+//São os elementos do alimentos(sushi)! - valores x e y iniciais e fonte da imagem
 let x_comida = getRandomInt(canvas.width-60)+30; //Defini um valor inicial aleatório para x
 let y_comida = getRandomInt(canvas.height-50)+25;//Defini um valor inicial aleatório para y
-let comida = new Image(); comida.src = "img/comidinha.jpeg";
+let comida = new Image(); comida.src = "img/comidinha.jpeg";//Definir source da imagem
 
 //Criando variáveis para que seja possível adicionar as informações de pontuação no html
 let pontuacao = document.getElementById('pontos'); //Cria a variável como o texto da tag de id pontos
@@ -235,14 +240,15 @@ function comidinha(){
 
 //_0063.Função para aparecer o sushi especial/colorido (pontuação bônus)
 
-let c_especial = new Image(); c_especial.src = 'img/c_especial.jpeg'; 
-let contador_especial = 0; 
-let x_cEspecial = getRandomInt(canvas.width-90) + 30; let y_cEspecial = getRandomInt(canvas.height-75) + 25;
+let c_especial = new Image(); c_especial.src = 'img/c_especial.jpeg'; //Defnir o source do sushi especial/colorido
+let contador_especial = 0; //Definir o contador_especial como 0 ao começar o jogo
+let x_cEspecial = getRandomInt(canvas.width-90) + 30; let y_cEspecial = getRandomInt(canvas.height-75) + 25; //Definir os valores iniciais de x e y do arroz colorido, de forma que seja impossível ele nascer fora do campo de visão do canvas
 
-
+//Função para fazer o sushi especial nascer de forma aleatória
 function cespecial(){
 	let atualizador = getRandomInt(50);
 	
+    //O sushi especial só nasce quando o 'contador_especial' chegar a 30, em que ele só aumenta se o 'atualizador' for igual a 1 - em que para ele ser igual a 1 ele precisa ser sorteado dentro de 50 números pela função getRandomInt(50)
 	if (atualizador === 1 && contador_especial<30) {
 		contador_especial += 1;
 	}
@@ -294,7 +300,6 @@ let y_fogo_cid=  435;
 
 
 
-
 let inicio = 1,x_temp, y_temp; //Cria as variaveis temporarias que terao seus valores alterados na função do fogos_move();
 let posicao = getRandomInt(4); //Sorteia a primeira posição
 
@@ -305,7 +310,7 @@ function fogos_move(){
 	Então o movimento se baseia em duas variaveis que eu criei para serem temporareia (x_temp e y_temp), então a patir delas que tudo acontecerá.Após o fogo
 	completar seu percurso, a variavel inicio volta para 1 e é sorteado um novo numero para "posicao"*/
 
-	//Canto Superior Esquerdo
+	//Movimentação partindo do Canto Superior Esquerdo (CSE)
 	if (posicao === 0){ //Verifica se o numero sorteado é 0 = canto superior esquerdo
 
 		if (inicio===1){ //Para começar eu defino o x_temp e o y_temp como os valores do canto
@@ -318,15 +323,15 @@ function fogos_move(){
 			y_temp += fogo_speed;
 			ctx.drawImage(fogo, x_temp, y_temp, 65, 70);
 		}
+
 		else{
 			inicio = 1; posicao=getRandomInt(4); //Retomo a variável incio para 1, pois dai na proxima vez ele vai ter que ressetar o valor de x e y em relacao ao canto dele
 			//Além disso, sorteio um novo número para a posicao, para que ele troque ela
-
 		}
 
 	}
 
-	//Canto Superior Direito
+	//Movimentação partindo do Canto Superior Direito (CSD)
 	else if (posicao === 1){
 
 		if (inicio===1){
@@ -345,7 +350,7 @@ function fogos_move(){
 
 	}
 
-	//Canto Inferior Esquerdo
+	//Movimentação partindo do Canto inferior Esquerdo (CIE)
 	else if (posicao === 2){
 
 		if (inicio===1){
@@ -365,7 +370,7 @@ function fogos_move(){
 
 	}
 
-	//Canto Inferior Direito
+	//Movimentação partindo do Canto inferior Direito (CID)
 	else if (posicao === 3){
 
 		if (inicio===1){
@@ -383,7 +388,8 @@ function fogos_move(){
 		}
 
 	}
-	//Colisão
+	//Colisão entre o bolinho de arroz e o mini_boss(fogo)
+
 	if (
 		//X0,Y0
 		(x_temp > x_arroz) &&
@@ -422,6 +428,7 @@ function fogos_move(){
 		vidas()
 		vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
 		
+        //Volta o boss e os mini_boss para as posições iniciais
 		x_boss = canvas.width/2;
 		y_boss = (boss_d.w/2);
 		
@@ -457,7 +464,7 @@ x_boss = x_boss - (boss_d.w/2);
 function boss_move(pontos){
 	
 	if (pontos>=15) {
-		//Condições para caçar o arroz
+		//Condições para caçar o bolinho de arroz
 		if ( x_arroz > x_boss ) {
 			x_boss += boss_d.speed;
 			
@@ -473,7 +480,7 @@ function boss_move(pontos){
 			y_boss -= boss_d.speed;
 			
 		}
-		
+		//Colisão entre o o boss e o bolinho de arroz
 		if (
 			//X0,Y0
 			(x_boss > x_arroz) &&
@@ -512,6 +519,7 @@ function boss_move(pontos){
 			vidas()
 			vidas_restantes.innerText = num_vidas.toString() //Atualiza no HTML o valor do número de vidas
 			
+            //Volta o boss e os mini_boss para as posições iniciais
 			x_boss = canvas.width/2;
 			y_boss = (boss_d.w/2);
 			inicio = 1;

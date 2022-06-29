@@ -7,14 +7,14 @@ _003.pressinar(e) e soltar(e) são as funções que serão chamadas após os eve
 
 _004.Função resposanvel por contabilizar o número de vidas:
 
-_005.Função para movimentar o jogador 1 (w,a,s,d):
+_005.Função para movimentar o jogador (w,a,s,d):
 
-_006.Comidinhas do arroizin
-	_0062.Função para aparecer a comida simples
-	_0063.Comidinha especial!
+_006.Sistema de pontuação
+	_0062.Função para aparecer o sushi (pontuação simples)
+	_0063.Função para aparecer o sushi especial/colorido (pontuação bônus)
 
 _007.Fogos
-	_0071Funções de movimentação do Fogo
+	_0071.Funções de movimentação do Fogo
 
 _008.Boss
 
@@ -70,16 +70,16 @@ function vidas(){
 	else
 	{
 		location.reload(); //Para dar reload na página após perder o jogo;
-		alert("Game over"+ "\nTotal pontos: " +pontos);//fim de jogo
+		alert("Game over!"+ "\nTotal pontos: " +pontos);//fim de jogo
 	}
 }
 
 //#########################################################
 //#########################################################
 
-//_005.Função para movimentar o jogador 1 (w,a,s,d):
+//_005.Função para movimentar o jogador (w,a,s,d):
 
-//Aqui adicionei a imagem do arroz;
+//Aqui adicionei a imagem do bolinho de arroz;
 let arroz = new Image(); arroz.src= 'img/arrozin.png';
 let arroz_d={
 	speed:8,
@@ -179,14 +179,14 @@ function j1_move(){
 	
 
 	ctx.beginPath(); //Para indicar o começo
-	ctx.drawImage(arroz, x_arroz, y_arroz, arroz_d.w, arroz_d.h); //Para desenhar o arroz de acordo com suas novas posições
+	ctx.drawImage(arroz, x_arroz, y_arroz, arroz_d.w, arroz_d.h); //Para desenhar o bolinho de arroz de acordo com suas novas posições
 	
 }
 
 //#########################################################
 //#########################################################
 
-//_006.Comidinhas do arroizin
+//_006.Comidinhas do bolinho de arroz
 
 //_0061.Função para gerar um valor aleatório para depois associar ao x e y;
 function getRandomInt(max) {
@@ -204,11 +204,11 @@ let pontos = 0  //Cria a variável pontos, para que seja feita a contagem
 
 pontuacao.innerText = pontos; //Adiciona pela primeira vez no html o valor da pontuação, o qual começa no 0!
 
-//_0062. Função para aparecer a comida simples
+//_0062. Função para aparecer o sushi (pontuação simples)
 function comidinha(){
 	
 	//Verificar a colisão - foram definidos 4 pontos da comida, pontos esses que são os cantos do quadrado que forma a imagem;
-	//Ele verifica se os "pontos" da comida entraram na área do arroizin
+	//Ele verifica se os "pontos" da comida entraram na área do bolinho de arroz
 	//Para isso o "x" e o "y" da comida precisa estar dentro desses requisitos:
 	if ((x_comida+15 >= arroz_d.x-40) &&
 		(x_comida+15 <= arroz_d.x +40) &&
@@ -233,7 +233,7 @@ function comidinha(){
 //#########################################################
 //#########################################################
 
-//_0063.Comidinha especial!
+//_0063.Função para aparecer o sushi especial/colorido (pontuação bônus)
 
 let c_especial = new Image(); c_especial.src = 'img/c_especial.jpeg'; 
 let contador_especial = 0; 
@@ -258,7 +258,7 @@ function cespecial(){
 			
 			contador_especial=0;
 			
-			pontos += 5;
+			pontos += 5;//A pontuação aumenta em 5 pontos!
 			pontuacao.innerText = pontos //Atualiza no HTML a pontuação!
 			
 			x_cEspecial = getRandomInt(canvas.width-90) +30;
@@ -305,7 +305,7 @@ function fogos_move(){
 	Então o movimento se baseia em duas variaveis que eu criei para serem temporareia (x_temp e y_temp), então a patir delas que tudo acontecerá.Após o fogo
 	completar seu percurso, a variavel inicio volta para 1 e é sorteado um novo numero para "posicao"*/
 
-	//CSE
+	//Canto Superior Esquerdo
 	if (posicao === 0){ //Verifica se o numero sorteado é 0 = canto superior esquerdo
 
 		if (inicio===1){ //Para começar eu defino o x_temp e o y_temp como os valores do canto
@@ -326,7 +326,7 @@ function fogos_move(){
 
 	}
 
-	//CSD
+	//Canto Superior Direito
 	else if (posicao === 1){
 
 		if (inicio===1){
@@ -345,7 +345,7 @@ function fogos_move(){
 
 	}
 
-	//CIE
+	//Canto Inferior Esquerdo
 	else if (posicao === 2){
 
 		if (inicio===1){
@@ -365,7 +365,7 @@ function fogos_move(){
 
 	}
 
-	//CID
+	//Canto Inferior Direito
 	else if (posicao === 3){
 
 		if (inicio===1){
@@ -383,7 +383,7 @@ function fogos_move(){
 		}
 
 	}
-	//colisão
+	//Colisão
 	if (
 		//X0,Y0
 		(x_temp > x_arroz) &&
@@ -453,7 +453,7 @@ y_boss = y_boss - (boss_d.h/2);
 x_boss = x_boss - (boss_d.w/2);
 
 
-//Ele perseguirá o arroizin, então é necessário fazer um sistema de chasing comparando os x e y
+//Ele perseguirá o bolinho de arroz, então é necessário fazer um sistema de chasing comparando os x e y
 function boss_move(pontos){
 	
 	if (pontos>=15) {
@@ -537,10 +537,10 @@ function boss_move(pontos){
 function main(){
 	requestAnimationFrame(main); //Para pedir que o site chame novamente essa função toda vez que atualizar
 	ctx.beginPath(); ctx.clearRect(0, 0, canvas.width, canvas.height);//Limpa o canvas para a proxima animação
-	comidinha(); //Chama a função de desenhar a comida
-	cespecial();
-	j1_move(); //chamando a função do jogador1 (arroz)
-	fogos_move();
-	boss_move(pontos);
+	comidinha();//Chama a função de desenhar sushi (pontuação simples)
+	cespecial(); //Chama a função de desenhar sushi especial/colorido (pontuação bônus)
+	j1_move();//Chama a função responsável pela movimentação do jogador (arroz)
+	fogos_move();//Chama a função do mini boss (fogos que aparecem aleatoriamente nas diagonais)
+	boss_move(pontos);//Chama a função do boss (fogo que segue o jogador (arroz))
 	
 }

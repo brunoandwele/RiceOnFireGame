@@ -120,3 +120,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.descricao a{
+  color: white;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css_jogo1.css">
+    <title>Jogo</title>
+</head>
+
+<body>
+
+    <div id="menu">
+        <img src="img/logo.png" alt="logo" height="100px" width="100px">
+        <a href="home.html">Home</a>
+        <a href="jogo.html">Jogar</a>
+        <a href="sobrenos.html">Sobre Nós</a>
+    </div>
+
+    <div id="titulo">
+        <div id="titulo_img">
+            <img class="foguinhos" alt="" src="img/fogo_pixilizado.png" height="60" width="60">
+            <h1>Rice on Fire</h1>
+            <img class="foguinhos" alt="" src="img/fogo_pixilizado.png" height="60" width="60">
+        </div>
+        <p>Pontuação:<mark class="recursos" id="pontos"></mark> Vidas: <mark class="recursos" id="vidas"></mark></p>
+    </div>
+
+    <div id="Borda_Canvas">
+        <img id="my_Img" alt="" src="img/borda_pixilizada.png">
+    </div>
+
+    <div id="Borda_Canvas2">
+        <canvas id="my_Canvas" height="525px" width="650px"></canvas>
+    </div>
+
+    <div id="botao">
+        <input id="jogar" value="Jogar" type="button" onclick="main()">
+        <!--faltou o tipo do input, coloquei botao-->
+        <!--falta a função pra ele chamar ainda-->
+    </div>
+
+    <script src="java_script_jogo.js"></script>
+
+</body>
+
+</html>

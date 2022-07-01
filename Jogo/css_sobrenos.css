@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  /*background-color: rgb(63, 153, 238);*/
+  background-image: linear-gradient(to bottom right, rgb(255, 230, 0), red);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: Poppins;
+  
+}
+
+#titulo {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-family: "Press Start 2P", cursive;
+  color: rgb(24, 24, 24);
+  font-size: 15pt;
+  margin-bottom: 5vh;
+  text-align: center;
+
+}
+
+#titulo_img {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 10px;
+ 
+}
+
+#menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(49, 49, 49);
+  margin-bottom: 10vh;
+  padding: 2vh;
+  font-family: "Press Start 2P", cursive;
+}
+
+#menu a {
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  padding: 40px;
+}
+
+#menu a:hover {
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  background-color: rgb(49, 49, 49);
+  padding: 20px;
+  transition: all 0.8s ease;
+}
+
+#titulo h1{
+  font-family: "Press Start 2P", cursive;
+
+}
+
+#dev_um{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  padding: 20px;
+}
+
+
+#dev_dois{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  padding: 20px;
+}
+
+.dev_img{
+  border-radius: 50%;
+  min-width: 45%;
+  max-width: 45%;
+  border: 0.5vh rgb(49, 49, 49) solid;
+
+}
+
+.descricao{
+  background-color:rgb(24, 24, 24); ;
+  color: white;
+  padding: 3vh;
+  border-radius: 1vh;
+  height: fit-content; width: fit-content;
+  margin: 0 auto;
+  font-size: 12px;
+
+}
+
+#desenvolvedores{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px 10px;
+  margin: auto;
+}
+
+.descricao{
+    display: flex; flex-flow: column wrap;
+    justify-content: center; align-items:center;
+    gap:5px 5px;
+    font-size: 12pt;
+
+}
+
+.descricao_in{
+    width: 200px; height: 170px;
+
+    display: flex; flex-flow: column nowrap;
+    justify-content: center; align-items: center;
+    padding: 4px; gap: 3px 3px;
+
+    font-size: 12 pt;
+    
+}
+
+.linkedin{
+    align-self: center;
+    width: 100px; height: 100px;
+    border: 2 solid rgba(78, 76, 76, 0.162);
+}
+
+.linkedin:hover{
+    width: 120px; height: 120px;
+    border: 5 solid rgba(255, 255, 255, 0.162);
+}

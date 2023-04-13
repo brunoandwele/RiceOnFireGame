@@ -1,3 +1,3 @@
-<h1>RiceONFire Game<h1>
+<h1>RiceONFire Game</h1>
 
 During my first semester of the Computer Science bachelor's degree, I had the opportunity to take the Web Development course and work on a project to develop a game using JavaScript as the programming language and HTML and CSS as markup languages. The pair programming methodology was adopted, allowing us to collaborate closely and produce a high-quality end product. To manage the project, we used GIT as the main version control tool, allowing us to work efficiently and effectively together. The project was developed by BRUNO ANDWELE ALVES ANTUNES and ANA BEATRIZ TAVARES MALHEIRO(@AnaBeatrizTavaresMalheiro).
